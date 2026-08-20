@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, MessageCircle, Send, CheckCircle2, Copy, Check, ExternalLink, Github, Linkedin, Sparkles, MapPin, Clock } from 'lucide-react';
+import { Send, CheckCircle2, Copy, Check, ExternalLink, Sparkles, MapPin, Clock } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { ContactFormData } from '../types';
+import { ScrollReveal } from './ui/ScrollReveal';
+import { MorphicIcon } from './ui/MorphicIcon';
+import { GithubIcon, LinkedinIcon, XIcon, WhatsappIcon, GmailIcon } from './ui/BrandIcons';
 
 interface ContactProps {
   isDark: boolean;
@@ -78,174 +81,249 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
   return (
     <section
       id="contact"
-      className={`py-24 px-4 sm:px-6 lg:px-8 border-t transition-colors duration-300 ${
-        isDark ? 'bg-neutral-950 border-neutral-800/80 text-neutral-100' : 'bg-white border-neutral-200 text-neutral-900'
+      className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t transition-colors duration-300 overflow-hidden ${
+        isDark ? 'bg-neutral-950 border-neutral-800/80 text-neutral-100' : 'bg-neutral-100/30 border-neutral-200 text-neutral-900'
       }`}
     >
-      <div className="max-w-7xl mx-auto space-y-16">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border text-xs font-mono mb-3 bg-neutral-900/60 border-neutral-800 text-amber-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-              <span>Start A Project</span>
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
+        {/* Section Header with Scroll Reveal */}
+        <ScrollReveal direction="up">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
+            <div>
+              <div
+                className={`inline-flex items-center gap-2 px-3 py-1 rounded-md border text-xs font-mono mb-3 ${
+                  isDark
+                    ? 'bg-neutral-900/60 border-neutral-800 text-amber-400'
+                    : 'bg-amber-100/80 border-amber-300/80 text-amber-900 font-semibold'
+                }`}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                <span>Start A Project</span>
+              </div>
+              <h2
+                className={`text-2xl sm:text-4xl lg:text-6xl font-display font-extrabold tracking-tight ${
+                  isDark ? 'text-white' : 'text-neutral-950'
+                }`}
+              >
+                Let&apos;s build something great.
+              </h2>
             </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight">
-              Let&apos;s build something great.
-            </h2>
-          </div>
 
-          <p className="text-sm sm:text-base text-neutral-400 max-w-lg leading-relaxed">
-            Have a project in mind, need a full-stack web application, or want to consult on technical design? Send an inquiry below.
-          </p>
-        </div>
+            <p
+              className={`text-sm sm:text-base max-w-lg leading-relaxed ${
+                isDark ? 'text-neutral-400' : 'text-neutral-700'
+              }`}
+            >
+              Have a project in mind, need a full-stack web application, or want to consult on technical design? Send an inquiry below.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Contact Split Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Direct Communication Channels (Left Column) */}
-          <div className="lg:col-span-5 space-y-6">
+          <ScrollReveal direction="right" className="lg:col-span-5 space-y-6">
             <div
-              className={`p-7 rounded-2xl border space-y-6 ${
-                isDark ? 'bg-neutral-900/30 border-neutral-800' : 'bg-neutral-50 border-neutral-200'
+              className={`p-5 sm:p-7 rounded-2xl border space-y-5 sm:space-y-6 ${
+                isDark ? 'bg-neutral-900/30 border-neutral-800' : 'bg-white border-neutral-300'
               }`}
             >
               <div className="space-y-2">
-                <h3 className="font-display font-bold text-lg text-neutral-100 dark:text-neutral-100">
+                <h3
+                  className={`font-display font-bold text-lg ${
+                    isDark ? 'text-neutral-100' : 'text-neutral-950'
+                  }`}
+                >
                   Direct Inquiries & Availability
                 </h3>
-                <p className="text-xs text-neutral-400 leading-relaxed">
+                <p
+                  className={`text-xs leading-relaxed ${
+                    isDark ? 'text-neutral-400' : 'text-neutral-600'
+                  }`}
+                >
                   I typically respond within 12–24 hours on business days.
                 </p>
               </div>
 
-              {/* Email Card with Copy Button */}
+              {/* Email Card with Copy Button & Morphic Icon */}
               <div
-                className={`p-4 rounded-xl border flex items-center justify-between gap-3 ${
-                  isDark ? 'bg-neutral-950/60 border-neutral-800' : 'bg-white border-neutral-300'
+                className={`p-4 rounded-xl border flex items-center justify-between gap-3 transition-colors ${
+                  isDark ? 'bg-neutral-950/60 border-neutral-800' : 'bg-neutral-50 border-neutral-200'
                 }`}
               >
                 <div className="flex items-center gap-3 overflow-hidden">
-                  <div className="p-2 rounded-lg bg-amber-400/10 text-amber-400 border border-amber-400/20">
-                    <Mail className="w-4 h-4" />
-                  </div>
+                  <MorphicIcon
+                    icon={<GmailIcon className="w-4 h-4" />}
+                    color="amber"
+                    size="sm"
+                    isDark={isDark}
+                    title="Gmail"
+                  />
                   <div className="truncate">
-                    <p className="text-[10px] font-mono text-neutral-400 uppercase">Direct Email</p>
-                    <p className="text-xs sm:text-sm font-mono font-semibold text-neutral-200 dark:text-neutral-100 truncate">
+                    <p
+                      className={`text-[10px] font-mono uppercase ${
+                        isDark ? 'text-neutral-400' : 'text-neutral-500 font-semibold'
+                      }`}
+                    >
+                      Direct Gmail
+                    </p>
+                    <p
+                      className={`text-xs sm:text-sm font-mono font-semibold truncate ${
+                        isDark ? 'text-neutral-100' : 'text-neutral-900'
+                      }`}
+                    >
                       {emailAddress}
                     </p>
                   </div>
                 </div>
 
-                <button
+                <motion.button
                   type="button"
                   onClick={handleCopyEmail}
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
                   title="Copy email to clipboard"
                   className={`p-2 rounded-lg border text-xs font-mono transition-colors flex-shrink-0 ${
                     copiedEmail
-                      ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400'
+                      ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-600 dark:text-emerald-400'
                       : isDark
                         ? 'border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-800'
-                        : 'border-neutral-200 text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100'
+                        : 'border-neutral-300 text-neutral-700 hover:text-neutral-950 hover:bg-neutral-100'
                   }`}
                 >
                   {copiedEmail ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                </button>
+                </motion.button>
               </div>
 
               {/* WhatsApp Quick Chat */}
-              <a
+              <motion.a
                 id="contact-whatsapp-direct"
-                href={`https://wa.me/2348000000000?text=${encodeURIComponent(
+                href={`https://wa.me/2347043534602?text=${encodeURIComponent(
                   'Hello Joshua, I reviewed your portfolio on Joshware and would like to discuss a project.'
                 )}`}
                 target="_blank"
                 rel="noreferrer"
+                whileHover={{ x: 4 }}
                 className={`p-4 rounded-xl border flex items-center justify-between transition-all group ${
                   isDark
                     ? 'bg-neutral-950/60 border-neutral-800 hover:border-emerald-500/50 hover:bg-neutral-950'
-                    : 'bg-white border-neutral-300 hover:border-emerald-500 hover:bg-emerald-50/20'
+                    : 'bg-neutral-50 border-neutral-200 hover:border-emerald-500 hover:bg-emerald-50/30'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    <MessageCircle className="w-4 h-4" />
-                  </div>
+                  <MorphicIcon
+                    icon={<WhatsappIcon className="w-4 h-4" />}
+                    color="emerald"
+                    size="sm"
+                    isDark={isDark}
+                    title="WhatsApp"
+                  />
                   <div>
-                    <p className="text-[10px] font-mono text-neutral-400 uppercase">Instant Chat</p>
-                    <p className="text-xs sm:text-sm font-mono font-semibold text-neutral-200 dark:text-neutral-100">
-                      WhatsApp Direct
+                    <p
+                      className={`text-[10px] font-mono uppercase ${
+                        isDark ? 'text-neutral-400' : 'text-neutral-500 font-semibold'
+                      }`}
+                    >
+                      Instant WhatsApp
+                    </p>
+                    <p
+                      className={`text-xs sm:text-sm font-mono font-semibold ${
+                        isDark ? 'text-neutral-100' : 'text-neutral-900'
+                      }`}
+                    >
+                      +234 704 353 4602
                     </p>
                   </div>
                 </div>
-                <ExternalLink className="w-4 h-4 text-neutral-500 group-hover:text-emerald-400 transition-colors" />
-              </a>
+                <ExternalLink className="w-4 h-4 text-neutral-400 group-hover:text-emerald-500 transition-colors" />
+              </motion.a>
 
               {/* Social Channels */}
-              <div className="pt-4 border-t border-neutral-800/80 space-y-3">
-                <p className="text-xs font-mono text-neutral-400 uppercase">Professional Networks</p>
+              <div className={`pt-4 border-t space-y-3 ${isDark ? 'border-neutral-800/80' : 'border-neutral-200'}`}>
+                <p
+                  className={`text-xs font-mono uppercase ${
+                    isDark ? 'text-neutral-400' : 'text-neutral-600 font-semibold'
+                  }`}
+                >
+                  Professional Networks
+                </p>
                 <div className="grid grid-cols-3 gap-2">
-                  <a
+                  <motion.a
                     href="https://github.com"
                     target="_blank"
                     rel="noreferrer"
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
                     className={`p-2.5 rounded-xl border text-center text-xs font-mono transition-colors flex items-center justify-center gap-1.5 ${
                       isDark
                         ? 'border-neutral-800 bg-neutral-950/50 text-neutral-300 hover:border-neutral-700 hover:text-white'
-                        : 'border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300 hover:text-neutral-950'
+                        : 'border-neutral-200 bg-neutral-50 text-neutral-800 hover:border-neutral-300 hover:text-neutral-950 font-medium'
                     }`}
                   >
-                    <Github className="w-3.5 h-3.5" />
+                    <GithubIcon className="w-3.5 h-3.5" />
                     <span>GitHub</span>
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
                     href="https://linkedin.com"
                     target="_blank"
                     rel="noreferrer"
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
                     className={`p-2.5 rounded-xl border text-center text-xs font-mono transition-colors flex items-center justify-center gap-1.5 ${
                       isDark
                         ? 'border-neutral-800 bg-neutral-950/50 text-neutral-300 hover:border-neutral-700 hover:text-white'
-                        : 'border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300 hover:text-neutral-950'
+                        : 'border-neutral-200 bg-neutral-50 text-neutral-800 hover:border-neutral-300 hover:text-neutral-950 font-medium'
                     }`}
                   >
-                    <Linkedin className="w-3.5 h-3.5" />
+                    <LinkedinIcon className="w-3.5 h-3.5" />
                     <span>LinkedIn</span>
-                  </a>
-                  <a
-                    href="https://x.com"
+                  </motion.a>
+                  <motion.a
+                    href="https://x.com/josh_ware25"
                     target="_blank"
                     rel="noreferrer"
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
                     className={`p-2.5 rounded-xl border text-center text-xs font-mono transition-colors flex items-center justify-center gap-1.5 ${
                       isDark
                         ? 'border-neutral-800 bg-neutral-950/50 text-neutral-300 hover:border-neutral-700 hover:text-white'
-                        : 'border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300 hover:text-neutral-950'
+                        : 'border-neutral-200 bg-neutral-50 text-neutral-800 hover:border-neutral-300 hover:text-neutral-950 font-medium'
                     }`}
                   >
-                    <span className="font-bold">X</span>
-                    <span>Twitter</span>
-                  </a>
+                    <XIcon className="w-3.5 h-3.5" />
+                    <span>X</span>
+                  </motion.a>
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* High-Conversion Project Inquiry Form (Right Column) */}
-          <div className="lg:col-span-7">
+          <ScrollReveal direction="left" className="lg:col-span-7">
             <form
               id="portfolio-contact-form"
               onSubmit={handleSubmit}
               className={`p-7 sm:p-9 rounded-2xl border space-y-6 ${
-                isDark ? 'bg-neutral-900/40 border-neutral-800' : 'bg-neutral-50 border-neutral-300'
+                isDark ? 'bg-neutral-900/40 border-neutral-800' : 'bg-white border-neutral-300 shadow-sm'
               }`}
             >
               {isSuccess ? (
                 <div className="py-12 flex flex-col items-center text-center space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                  <div className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-display font-bold text-neutral-100 dark:text-neutral-100">
+                  <h3
+                    className={`text-xl sm:text-2xl font-display font-bold ${
+                      isDark ? 'text-white' : 'text-neutral-950'
+                    }`}
+                  >
                     Message Received!
                   </h3>
-                  <p className="text-xs sm:text-sm text-neutral-400 max-w-md leading-relaxed">
+                  <p
+                    className={`text-xs sm:text-sm max-w-md leading-relaxed ${
+                      isDark ? 'text-neutral-400' : 'text-neutral-600'
+                    }`}
+                  >
                     Thank you for reaching out, {formData.name}. Joshua will review your project details and follow up promptly.
                   </p>
                   <button
@@ -270,7 +348,12 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Name */}
                     <div className="space-y-1.5">
-                      <label htmlFor="contact-name" className="text-xs font-mono uppercase text-neutral-400">
+                      <label
+                        htmlFor="contact-name"
+                        className={`text-xs font-mono uppercase ${
+                          isDark ? 'text-neutral-400' : 'text-neutral-700 font-semibold'
+                        }`}
+                      >
                         Your Name *
                       </label>
                       <input
@@ -283,14 +366,19 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                         className={`w-full px-4 py-3 rounded-xl border text-xs sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400 ${
                           isDark
                             ? 'bg-neutral-950/70 border-neutral-800 text-neutral-100 placeholder:text-neutral-600'
-                            : 'bg-white border-neutral-300 text-neutral-900 placeholder:text-neutral-400'
+                            : 'bg-neutral-50 border-neutral-300 text-neutral-900 placeholder:text-neutral-400'
                         }`}
                       />
                     </div>
 
                     {/* Email */}
                     <div className="space-y-1.5">
-                      <label htmlFor="contact-email" className="text-xs font-mono uppercase text-neutral-400">
+                      <label
+                        htmlFor="contact-email"
+                        className={`text-xs font-mono uppercase ${
+                          isDark ? 'text-neutral-400' : 'text-neutral-700 font-semibold'
+                        }`}
+                      >
                         Your Email *
                       </label>
                       <input
@@ -303,7 +391,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                         className={`w-full px-4 py-3 rounded-xl border text-xs sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400 ${
                           isDark
                             ? 'bg-neutral-950/70 border-neutral-800 text-neutral-100 placeholder:text-neutral-600'
-                            : 'bg-white border-neutral-300 text-neutral-900 placeholder:text-neutral-400'
+                            : 'bg-neutral-50 border-neutral-300 text-neutral-900 placeholder:text-neutral-400'
                         }`}
                       />
                     </div>
@@ -311,7 +399,12 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
 
                   {/* Project Type */}
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-project-type" className="text-xs font-mono uppercase text-neutral-400">
+                    <label
+                      htmlFor="contact-project-type"
+                      className={`text-xs font-mono uppercase ${
+                        isDark ? 'text-neutral-400' : 'text-neutral-700 font-semibold'
+                      }`}
+                    >
                       Project Classification
                     </label>
                     <select
@@ -321,7 +414,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                       className={`w-full px-4 py-3 rounded-xl border text-xs sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400 ${
                         isDark
                           ? 'bg-neutral-950/70 border-neutral-800 text-neutral-100'
-                          : 'bg-white border-neutral-300 text-neutral-900'
+                          : 'bg-neutral-50 border-neutral-300 text-neutral-900'
                       }`}
                     >
                       {projectTypes.map((type) => (
@@ -334,7 +427,12 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
 
                   {/* Budget Scope */}
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-budget" className="text-xs font-mono uppercase text-neutral-400">
+                    <label
+                      htmlFor="contact-budget"
+                      className={`text-xs font-mono uppercase ${
+                        isDark ? 'text-neutral-400' : 'text-neutral-700 font-semibold'
+                      }`}
+                    >
                       Estimated Budget Range
                     </label>
                     <select
@@ -344,7 +442,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                       className={`w-full px-4 py-3 rounded-xl border text-xs sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400 ${
                         isDark
                           ? 'bg-neutral-950/70 border-neutral-800 text-neutral-100'
-                          : 'bg-white border-neutral-300 text-neutral-900'
+                          : 'bg-neutral-50 border-neutral-300 text-neutral-900'
                       }`}
                     >
                       {budgetRanges.map((b) => (
@@ -357,7 +455,12 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
 
                   {/* Message */}
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-message" className="text-xs font-mono uppercase text-neutral-400">
+                    <label
+                      htmlFor="contact-message"
+                      className={`text-xs font-mono uppercase ${
+                        isDark ? 'text-neutral-400' : 'text-neutral-700 font-semibold'
+                      }`}
+                    >
                       Project Details & Scope *
                     </label>
                     <textarea
@@ -370,17 +473,19 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                       className={`w-full px-4 py-3 rounded-xl border text-xs sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400 ${
                         isDark
                           ? 'bg-neutral-950/70 border-neutral-800 text-neutral-100 placeholder:text-neutral-600'
-                          : 'bg-white border-neutral-300 text-neutral-900 placeholder:text-neutral-400'
+                          : 'bg-neutral-50 border-neutral-300 text-neutral-900 placeholder:text-neutral-400'
                       }`}
                     />
                   </div>
 
                   {/* Submit Button */}
-                  <button
+                  <motion.button
                     id="contact-submit-btn"
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 px-6 rounded-xl text-xs sm:text-sm font-mono font-bold tracking-wider uppercase border border-amber-300 bg-amber-400 text-neutral-950 hover:bg-amber-300 transition-colors flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 disabled:opacity-50"
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    className="w-full min-h-[48px] py-3.5 px-6 rounded-xl text-xs sm:text-sm font-mono font-bold tracking-wider uppercase border border-amber-300 bg-amber-400 text-neutral-950 hover:bg-amber-300 transition-colors flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 disabled:opacity-50 shadow-md touch-manipulation"
                   >
                     {isSubmitting ? (
                       <span>Sending Inquiry...</span>
@@ -390,11 +495,11 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                         <Send className="w-4 h-4" />
                       </>
                     )}
-                  </button>
+                  </motion.button>
                 </>
               )}
             </form>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

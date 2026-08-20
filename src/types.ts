@@ -9,6 +9,12 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   previewImage: string;
+  screenshots?: {
+    title: string;
+    caption: string;
+    url: string;
+    tag?: string;
+  }[];
   highlights: string[];
   caseStudy: {
     overview: string;

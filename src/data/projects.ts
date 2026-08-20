@@ -11,7 +11,27 @@ export const projects: Project[] = [
       'A wholesale and importation business platform designed to allow customers to browse products, place bulk orders, and manage transactions, backed by a complete custom CRM and CMS business management suite.',
     technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase', 'Node.js', 'REST APIs'],
     liveUrl: 'https://eagle-excel-ventures.vercel.app',
-    previewImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop',
+    previewImage: 'https://res.cloudinary.com/doujptiz/image/upload/v1787235591/31b212d9-1e0c-449b-9c38-5f3433693a7d.png',
+    screenshots: [
+      {
+        title: 'Homepage & Storefront',
+        caption: 'Digital wholesale storefront showcasing real-time product catalogs, bulk ordering mechanics, and brand presentation.',
+        url: 'https://res.cloudinary.com/doujptiz/image/upload/v1787235591/31b212d9-1e0c-449b-9c38-5f3433693a7d.png',
+        tag: 'Storefront'
+      },
+      {
+        title: 'Content Management System (CMS)',
+        caption: 'Administrative dashboard for real-time inventory management, category categorization, media uploads, and catalog updates.',
+        url: 'https://res.cloudinary.com/doujptiz/image/upload/v1787235661/72d53fde-e32e-46b0-9606-ead9c6377395.png',
+        tag: 'CMS'
+      },
+      {
+        title: 'Customer Relationship Management (CRM)',
+        caption: 'Centralized client relationship management suite for tracking wholesale inquiries, purchase orders, and communications.',
+        url: 'https://res.cloudinary.com/doujptiz/image/upload/v1787235665/03006a24-612f-43b2-9612-749b51dfcf4c.png',
+        tag: 'CRM'
+      }
+    ],
     highlights: [
       'Digital wholesale storefront with real-time product catalogs',
       'Integrated customer relationship management (CRM) & order workflow',
@@ -51,48 +71,63 @@ export const projects: Project[] = [
   },
   {
     id: 'joshstream-web',
-    title: 'JoshStream.Web',
-    category: 'Spatial & 3D',
-    badge: '3D Spatial Web',
-    tagline: 'Experimental Spatial Commerce & Immersive 3D Experience',
+    title: 'Joshware',
+    category: 'Full-Stack Web',
+    badge: 'Flagship Platform',
+    tagline: 'Personal Creative Engineering & Software Solutions Platform',
     description:
-      'An innovative web platform exploring the intersection of spatial commerce, 3D interactive product rendering, and immersive visual exploration for next-generation digital retail.',
-    technologies: ['React', 'Three.js / WebGL', 'TypeScript', 'Tailwind CSS', 'Vite', 'Spatial Shaders'],
+      'The flagship Joshware digital ecosystem and software solutions hub designed to showcase high-performance full-stack web applications, digital product delivery, and modern client checkout solutions.',
+    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Stripe / Paystack', 'REST APIs'],
     liveUrl: 'https://josh-stream-web.vercel.app/#home',
-    previewImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop',
+    previewImage: 'https://res.cloudinary.com/doujptiz/image/upload/v1787235973/7ae447ee-edab-420d-9499-5edcee61c7d1.png',
+    screenshots: [
+      {
+        title: 'Homepage & Platform Hero',
+        caption: 'Joshware flagship digital interface featuring clean brand typography, interactive portfolio sections, service tiers, and smooth responsive navigation.',
+        url: 'https://res.cloudinary.com/doujptiz/image/upload/v1787235973/7ae447ee-edab-420d-9499-5edcee61c7d1.png',
+        tag: 'Homepage'
+      },
+      {
+        title: 'Payment & Checkout Interface',
+        caption: 'Integrated payment processing and order confirmation portal engineered for secure client transactions, invoice clearing, and automated service checkout.',
+        url: 'https://res.cloudinary.com/doujptiz/image/upload/v1787236298/b64ac412-dfeb-4104-9785-b07b7a856e5f.png',
+        tag: 'Payment'
+      }
+    ],
     highlights: [
-      'Real-time interactive 3D product inspection and viewport manipulation',
-      'Exploration of Spatial Commerce and WebGL lighting pipelines',
-      'Research into Gaussian Splatting and NeRF visual pipelines',
-      'Optimized 60 FPS GPU rendering across modern browser environments'
+      'High-performance full-stack web architecture with responsive design systems',
+      'End-to-end payment gateway and digital invoice clearing checkout flows',
+      'Custom micro-interactions, dark/light theme engine, and modal workflows',
+      'Optimized sub-second load times and modular component architecture'
     ],
     caseStudy: {
       overview:
-        'JoshStream.Web serves as an exploratory platform pushing the boundaries of traditional e-commerce into spatial 3D environments, enabling users to interact with photorealistic digital assets in real time.',
-      clientOrContext: 'Independent Research & Creative Engineering Project',
-      role: 'Frontend & 3D Graphics Engineer',
+        'Joshware serves as the primary software engineering and design identity platform, integrating client onboarding, service offerings, and streamlined checkout workflows in a unified ecosystem.',
+      clientOrContext: 'Joshware Digital Engineering',
+      role: 'Lead Full-Stack Developer & UI/UX Designer',
       problem:
-        'Flat 2D product photography restricts buyer perception of physical products, leading to hesitation and reduced engagement in high-value e-commerce.',
+        'Clients needed a friction-free method to inspect past engineering achievements, explore service packages, and initiate project retainers with seamless online payment handling.',
       solution:
-        'Architected an interactive 3D spatial web application that renders geometric models with dynamic lighting, orbital controls, and spatial depth directly within the browser.',
+        'Engineered an ultra-fast, responsive web platform featuring structured service tiers, dynamic project case studies, and a dedicated frictionless payment & checkout gateway.',
       keyFeatures: [
-        'Interactive 3D Viewport: Real-time orbit, zoom, and panning controls with inertia.',
-        'Spatial Commerce Concepts: Dynamic material inspection and multi-angle lighting adjustments.',
-        'Emerging Tech Alignment: Architectural exploration of Gaussian Splatting and neural radiance field concepts.',
-        'Responsive Canvas Management: Adaptive canvas resolution scaling based on device pixel ratio and GPU capacity.'
+        'Homepage & Portfolio: Dynamic interactive project previews, technical skill matrix, and career timeline.',
+        'Payment & Checkout Portal: Secure multi-currency transaction interface with instantaneous status notifications.',
+        'Theme Switching Engine: Bespoke dark/light system maintaining strict contrast ratios across all components.',
+        'Adaptive Layouts: Optimized viewport scaling across desktop, tablet, and mobile browsers.'
       ],
       technicalArchitecture: [
-        'WebGL Rendering Pipeline: Optimized render loops with requestAnimationFrame and matrix transformations.',
-        'Scene Graph Hierarchy: Organized meshes, ambient/directional illumination, and camera vectors.',
-        'State Integration: Synchronized 3D canvas state with reactive UI controls.'
+        'Frontend: Modern React with TypeScript and strict type assertions.',
+        'Styling: Tailwind CSS with high-contrast accessibility standards.',
+        'Payments: Integration-ready payment handling architecture for international checkout.',
+        'Deployment: Hosted on global edge networks with dynamic asset caching.'
       ],
       designConsiderations: [
-        'Spatial Clarity: High-contrast dark backdrop to make 3D surfaces and specular highlights pop.',
-        'Zero Clutter UI: Minimal floating HUD controls preserving 90%+ of the screen area for the 3D viewport.',
-        'Graceful Fallback: Fallback render states for lower-end mobile devices and legacy browsers.'
+        'Minimalist Luxury: Balanced typography pairing with amber accent highlights.',
+        'Tactile Feedback: Fluid micro-interactions and spring animations for actionable elements.',
+        'High Accessibility: WCAG AA color contrast across both dark and light modes.'
       ],
       outcome:
-        'Published live at josh-stream-web.vercel.app, demonstrating expertise in advanced web graphics, WebGL, and modern spatial interfaces.'
+        'Successfully published and operational, serving as the core business portal for Joshware client acquisition and payment processing.'
     }
   },
   {
@@ -100,44 +135,59 @@ export const projects: Project[] = [
     title: 'Cosmo3D',
     category: 'Interactive Experience',
     badge: 'Real-Time Graphics',
-    tagline: 'Interactive 3D Web Graphics & Mesh Exploration Suite',
+    tagline: 'Interactive 3D Web Graphics & User Authentication Suite',
     description:
-      'A real-time 3D web application demonstrating procedural geometry manipulation, dynamic shader materials, ambient occlusion lighting, and camera orbit kinetics directly in the browser.',
-    technologies: ['TypeScript', 'WebGL / Canvas', 'React', 'Motion', 'Tailwind CSS', 'Linear Algebra Math'],
-    previewImage: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=1200&auto=format&fit=crop',
+      'A real-time 3D web application and visual workspace featuring interactive parametric geometry, dynamic shader materials, camera orbit kinetics, and user account management.',
+    technologies: ['TypeScript', 'WebGL / Three.js', 'React', 'Motion', 'Tailwind CSS', 'Auth / Firebase'],
+    liveUrl: 'https://cosmo3d-26yicczrn-nonchalantgamers-projects.vercel.app/',
+    previewImage: 'https://res.cloudinary.com/doujptiz/image/upload/v1787236609/b961c32b-7b36-4eaa-ab52-cabd9739aecf.png',
+    screenshots: [
+      {
+        title: 'Homepage & 3D Interactive Canvas',
+        caption: 'Central 3D exploration interface providing real-time polygon manipulation, shader illumination, and orbit physics directly in the browser.',
+        url: 'https://res.cloudinary.com/doujptiz/image/upload/v1787236609/b961c32b-7b36-4eaa-ab52-cabd9739aecf.png',
+        tag: 'Homepage'
+      },
+      {
+        title: 'Log In / Sign Up Authentication Portal',
+        caption: 'Full-featured account onboarding and authentication suite providing secure user registration, session management, and credential recovery.',
+        url: 'https://res.cloudinary.com/doujptiz/image/upload/v1787236706/54ab195d-4c0e-4608-92ce-61158ffd444f.png',
+        tag: 'Auth'
+      }
+    ],
     highlights: [
       'Interactive parametric 3D geometry engine with live wireframe & shading toggles',
+      'Secure user login, registration, and session authentication architecture',
       'Real-time mouse tracking and gyroscope-inspired rotational physics',
-      'Custom vertex and fragment shader simulation directly in the DOM',
-      'Embedded interactive live playground available right on this portfolio'
+      'Embedded interactive live playground and live deployed web application'
     ],
     caseStudy: {
       overview:
-        'Cosmo3D represents a deep-dive into mathematical web visualization, demonstrating how raw mathematics, vertex shaders, and matrix transformations combine to deliver fluid interactive experiences without heavyweight engine bloat.',
-      clientOrContext: 'Creative Engineering Lab',
-      role: 'Graphics & Creative Web Developer',
+        'Cosmo3D combines raw mathematical web visualization with practical application features including user authentication, personalized 3D scenes, and responsive cross-device performance.',
+      clientOrContext: 'Creative Engineering Lab & 3D Web Application',
+      role: 'Full-Stack 3D & Graphics Engineer',
       problem:
-        'Many web 3D applications suffer from massive initial bundle sizes (50MB+) and sluggish frame drops on standard consumer hardware.',
+        'Complex 3D web applications often lack structured user management and suffer from poor mobile performance and slow initial load times.',
       solution:
-        'Built a lightweight, highly optimized interactive 3D rendering component that leverages pure WebGL & optimized Canvas algorithms to deliver silky 60 FPS interactions with zero bloat.',
+        'Built an optimized 3D graphics playground coupled with a clean user authentication system, enabling visitors to log in, explore parametric 3D geometries, and experience smooth 60 FPS graphics.',
       keyFeatures: [
-        'Procedural Geometry Engine: Real-time transformation of polyhedra, spheres, tori, and geodesic structures.',
-        'Interactive Lighting Studio: Dynamic directional light, specular highlights, and ambient illumination controls.',
-        'Wireframe / Solid Matrix: Live toggles between structural edge wireframes, shaded vertices, and surface normals.',
-        'Kinetic Orbit Physics: Inertial dampening and momentum rotation following cursor velocities.'
+        'Procedural Geometry Engine: Real-time manipulation of polyhedra, geodesic structures, and surface normals.',
+        'Authentication Suite: Dedicated log in and sign up interfaces for persistent user sessions.',
+        'Kinetic Orbit Physics: Inertial dampening and momentum rotation tracking user inputs.',
+        'Interactive Lighting Studio: Dynamic directional lighting, specular highlights, and ambient controls.'
       ],
       technicalArchitecture: [
-        'Mathematical Core: Custom vector3, matrix4, and quaternion transformations.',
-        'Rendering Loop: Frame-budgeted animation cycle preventing CPU spikes.',
-        'Modular Component: Packaged as a clean, reusable React component with prop-driven controls.'
+        'WebGL Core: Optimized mathematical vector transformations and render cycles.',
+        'Auth Layer: Secure token management and client-side authentication states.',
+        'Modular Components: Packaged as reusable, highly responsive React views.'
       ],
       designConsiderations: [
-        'Minimalist Industrial Aesthetic: Monochromatic wireframe aesthetics with precise typographic readouts.',
-        'Tactile Controls: Direct click-and-drag rotation with responsive haptic visual cues.',
-        'Seamless Integration: Blends natively into dark and light portfolio themes without visual disruption.'
+        'Industrial Graphics UI: High-contrast dark backdrop paired with vivid glowing wireframe shaders.',
+        'Frictionless Auth: Focused sign-in forms with instant validation and error handling.',
+        'Mobile Responsiveness: Seamless touch gestures for 3D navigation on mobile screens.'
       ],
       outcome:
-        'Embedded natively into Joshware as a live demonstration of Joshua’s graphics engineering and creative UI skills.'
+        'Live and accessible at cosmo3d-26yicczrn-nonchalantgamers-projects.vercel.app, featuring both live web deployment and interactive in-portfolio demonstration.'
     }
   }
 ];
