@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowUpRight } from 'lucide-react';
-import { IconMorpher } from './IconMorpher';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, XIcon, WhatsappIcon, GmailIcon } from './ui/BrandIcons';
 
 interface NavbarProps {
-  isDark: boolean;
-  onToggleTheme: () => void;
   activeSection: string;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ isDark, onToggleTheme, activeSection }) => {
+export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const lightLogo = 'https://res.cloudinary.com/doujptiz/image/upload/v1787232870/20260803_131813_egdl3q.png';
   const darkLogo = 'https://res.cloudinary.com/doujptiz/image/upload/v1787233211/20260803_131853_yiypyb.png';
 
-  // Scroll detection to identify when navbar moves away from top hero area
+  // Scroll detection
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
@@ -40,7 +36,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, onToggleTheme, activeSec
         const target = e.target as HTMLElement | null;
         const menuDrawer = document.getElementById('mobile-menu-drawer');
         if (menuDrawer && menuDrawer.contains(target)) {
-          return; // Allow scrolling inside the menu itself if needed
+          return;
         }
         e.preventDefault();
       };
@@ -82,14 +78,11 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, onToggleTheme, activeSec
     }
   };
 
-  // Is the header currently in blurry white mode? (only in dark mode when scrolled out of hero)
-  const isBlurryWhite = isDark && isScrolled;
-
   return (
     <>
       <header
         id="main-navigation-header"
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled ? 'py-2.5 sm:py-3' : 'py-3.5 sm:py-5'
         }`}
       >
@@ -97,12 +90,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, onToggleTheme, activeSec
           <nav
             id="navbar-container"
             aria-label="Main Navigation"
-            className={`flex items-center justify-between px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full border transition-all duration-300 backdrop-blur-xl backdrop-saturate-180 ${
-              isBlurryWhite
-                ? 'bg-white/40 border-white/50 text-neutral-950 shadow-lg shadow-black/15'
-                : isScrolled
-                ? 'bg-neutral-950/85 border-neutral-800/80 text-neutral-100 shadow-xl shadow-black/25'
-                : 'bg-neutral-900/40 border-neutral-700/50 text-white shadow-md'
+            className={`flex items-center justify-between px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full border transition-all duration-300 backdrop-blur-xl backdrop-saturate-180 bg-[#0a0c10]/90 text-neutral-100 shadow-2xl shadow-black/50 ${
+              mobileMenuOpen ? 'border-amber-400/40 ring-1 ring-amber-400/20' : 'border-neutral-800/90'
             }`}
           >
             {/* Standalone Brand Logo & Name */}
@@ -114,26 +103,16 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, onToggleTheme, activeSec
             >
               {/* Standalone Logo Image */}
               <img
-                src={isBlurryWhite ? lightLogo : darkLogo}
+                src={darkLogo}
                 alt="Joshware Logo"
                 className="h-7 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
               <div className="flex flex-col">
-                <span
-                  className={`font-display font-bold text-sm sm:text-base tracking-tight leading-none transition-colors ${
-                    isBlurryWhite
-                      ? 'text-neutral-950 group-hover:text-amber-600'
-                      : 'text-white group-hover:text-amber-400'
-                  }`}
-                >
+                <span className="font-display font-bold text-sm sm:text-base tracking-tight leading-none text-white group-hover:text-amber-400 transition-colors">
                   Joshware
                 </span>
-                <span
-                  className={`text-[9px] sm:text-[10px] font-mono tracking-wider uppercase transition-colors ${
-                    isBlurryWhite ? 'text-neutral-600 font-medium' : 'text-neutral-400'
-                  }`}
-                >
+                <span className="text-[9px] sm:text-[10px] font-mono tracking-wider uppercase text-neutral-400">
                   Joshua Enyinnaya
                 </span>
               </div>
@@ -151,22 +130,14 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, onToggleTheme, activeSec
                     onClick={(e) => handleScrollTo(e, link.href)}
                     className={`relative px-3.5 py-1.5 text-xs font-medium tracking-wide transition-colors rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 ${
                       isActive
-                        ? isBlurryWhite
-                          ? 'text-amber-600 font-bold'
-                          : 'text-amber-400 font-semibold'
-                        : isBlurryWhite
-                        ? 'text-neutral-700 hover:text-neutral-950 font-medium'
+                        ? 'text-amber-400 font-semibold'
                         : 'text-neutral-300 hover:text-white'
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="active-pill"
-                        className={`absolute inset-0 rounded-full border ${
-                          isBlurryWhite
-                            ? 'bg-white/60 border-white/70 shadow-xs'
-                            : 'bg-neutral-800/90 border-neutral-700'
-                        }`}
+                        className="absolute inset-0 rounded-full border bg-neutral-800/90 border-neutral-700 shadow-inner"
                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -176,35 +147,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, onToggleTheme, activeSec
               })}
             </div>
 
-            {/* Right Actions: Theme Toggle & Hire Me CTA */}
+            {/* Right Actions: Hire Me CTA & Mobile Toggle */}
             <div className="flex items-center gap-2">
-              {/* Morphic Theme Toggle Button using IconMorpher with 44px touch target */}
-              <motion.button
-                id="theme-toggle-btn"
-                type="button"
-                onClick={onToggleTheme}
-                whileHover={{ scale: 1.08, rotate: isDark ? 15 : -15 }}
-                whileTap={{ scale: 0.92 }}
-                aria-label={`Switch to ${isDark ? 'Light' : 'Dark'} mode`}
-                className={`relative min-w-[44px] min-h-[44px] p-2.5 rounded-full border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 overflow-hidden group flex items-center justify-center touch-manipulation ${
-                  isBlurryWhite
-                    ? 'border-white/50 bg-white/40 text-neutral-900 hover:text-amber-600 shadow-xs'
-                    : 'border-neutral-700/80 bg-neutral-900/60 text-neutral-200 hover:text-amber-400 shadow-inner'
-                }`}
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-amber-300/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-full blur-xs"
-                />
-                <IconMorpher
-                  preset="theme"
-                  isToggled={!isDark}
-                  animation="rotate-flip"
-                  size={18}
-                  isDark={!isBlurryWhite}
-                  className="relative z-10"
-                />
-              </motion.button>
-
               {/* Hire Me CTA Button */}
               <motion.a
                 id="navbar-hire-me-cta"
@@ -212,33 +156,49 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, onToggleTheme, activeSec
                 onClick={(e) => handleScrollTo(e, '#contact')}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
-                className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 min-h-[40px] text-xs font-bold tracking-wider uppercase rounded-full transition-all border border-amber-300 bg-amber-400 text-neutral-950 hover:bg-amber-300 shadow-sm"
+                className="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 sm:py-2.5 min-h-[40px] text-xs font-bold tracking-wider uppercase rounded-full transition-all border border-amber-300 bg-amber-400 text-neutral-950 hover:bg-amber-300 shadow-md shadow-amber-400/20 touch-manipulation"
               >
                 <span>Hire Me!</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </motion.a>
 
-              {/* Mobile Menu Trigger using IconMorpher with 44px touch target */}
+              {/* Mobile Menu Trigger with Animated Icon Switch (Menu <-> X) */}
               <motion.button
                 id="mobile-menu-toggle-btn"
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 whileTap={{ scale: 0.9 }}
-                aria-label="Toggle navigation menu"
+                aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
                 aria-expanded={mobileMenuOpen}
-                className={`lg:hidden min-w-[44px] min-h-[44px] p-2.5 rounded-full border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 flex items-center justify-center touch-manipulation ${
-                  isBlurryWhite
-                    ? 'border-white/50 bg-white/40 text-neutral-900 hover:bg-white/60 shadow-xs'
-                    : 'border-neutral-700 text-neutral-200 hover:bg-neutral-800'
+                className={`lg:hidden min-w-[44px] min-h-[44px] p-2.5 rounded-full border transition-all flex items-center justify-center touch-manipulation cursor-pointer ${
+                  mobileMenuOpen
+                    ? 'border-amber-400/60 bg-amber-400/15 text-amber-400 shadow-md shadow-amber-400/10'
+                    : 'border-neutral-800 bg-neutral-900/90 text-neutral-200 hover:bg-neutral-800 hover:text-white'
                 }`}
               >
-                <IconMorpher
-                  preset="menu"
-                  isToggled={mobileMenuOpen}
-                  animation="rotate-flip"
-                  size={18}
-                  isDark={!isBlurryWhite}
-                />
+                <AnimatePresence mode="wait" initial={false}>
+                  {mobileMenuOpen ? (
+                    <motion.div
+                      key="close-icon"
+                      initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
+                      animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                      exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
+                      transition={{ duration: 0.18, ease: 'easeOut' }}
+                    >
+                      <X className="w-4 h-4" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu-icon"
+                      initial={{ rotate: 90, opacity: 0, scale: 0.6 }}
+                      animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                      exit={{ rotate: -90, opacity: 0, scale: 0.6 }}
+                      transition={{ duration: 0.18, ease: 'easeOut' }}
+                    >
+                      <Menu className="w-4 h-4" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.button>
             </div>
           </nav>
@@ -257,18 +217,18 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, onToggleTheme, activeSec
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm lg:hidden touch-none"
+              className="fixed inset-0 z-40 bg-black/75 backdrop-blur-sm lg:hidden touch-none"
               aria-hidden="true"
             />
 
             {/* Mobile Drawer */}
             <motion.div
               id="mobile-menu-drawer"
-              initial={{ opacity: 0, y: -15, scale: 0.98 }}
+              initial={{ opacity: 0, y: -12, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -15, scale: 0.98 }}
+              exit={{ opacity: 0, y: -12, scale: 0.98 }}
               transition={{ duration: 0.22, ease: 'easeOut' }}
-              className="fixed inset-x-3 sm:inset-x-4 top-20 z-50 p-5 rounded-2xl border border-neutral-800 bg-neutral-950/98 text-neutral-100 backdrop-blur-2xl shadow-2xl max-h-[calc(100vh-5.5rem)] overflow-y-auto lg:hidden overscroll-contain"
+              className="fixed inset-x-3 sm:inset-x-4 top-20 sm:top-24 z-40 p-5 rounded-2xl border border-neutral-800 bg-neutral-950/98 text-neutral-100 backdrop-blur-2xl shadow-2xl max-h-[calc(100vh-6rem)] overflow-y-auto lg:hidden overscroll-contain"
             >
               <div className="flex flex-col gap-1.5">
                 {navLinks.map((link, idx) => (

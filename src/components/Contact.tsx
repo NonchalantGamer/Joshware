@@ -7,11 +7,7 @@ import { ScrollReveal } from './ui/ScrollReveal';
 import { MorphicIcon } from './ui/MorphicIcon';
 import { GithubIcon, LinkedinIcon, XIcon, WhatsappIcon, GmailIcon } from './ui/BrandIcons';
 
-interface ContactProps {
-  isDark: boolean;
-}
-
-export const Contact: React.FC<ContactProps> = ({ isDark }) => {
+export const Contact: React.FC = () => {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -106,7 +102,6 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
 
       if (response.ok || (data && (data.success === 'true' || data.success === true))) {
         setIsSuccess(true);
-        // Trigger celebratory confetti
         confetti({
           particleCount: 60,
           spread: 70,
@@ -114,14 +109,12 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
           colors: ['#fbbf24', '#f59e0b', '#d97706', '#ffffff']
         });
       } else {
-        // If external API request failed, display helpful fallback options
         const msg = data?.message || 'Could not send directly via form server.';
         setErrorMessage(msg);
-        setIsSuccess(true); // Still show the success/backup screen so visitor has one-click mail/whatsapp fallback
+        setIsSuccess(true);
       }
     } catch (err) {
       console.warn('FormSubmit AJAX fallback:', err);
-      // Even if network or adblocker blocks the API endpoint, transition to fallback options
       setIsSuccess(true);
     } finally {
       setIsSubmitting(false);
@@ -131,39 +124,23 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
   return (
     <section
       id="contact"
-      className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t transition-colors duration-300 overflow-hidden ${
-        isDark ? 'bg-neutral-950 border-neutral-800/80 text-neutral-100' : 'bg-neutral-100/30 border-neutral-200 text-neutral-900'
-      }`}
+      className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-t border-[#1c1f28] bg-[#0c0e14] text-neutral-100 transition-colors duration-300 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
         {/* Section Header with Scroll Reveal */}
         <ScrollReveal direction="up">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
             <div>
-              <div
-                className={`inline-flex items-center gap-2 px-3 py-1 rounded-md border text-xs font-mono mb-3 ${
-                  isDark
-                    ? 'bg-neutral-900/60 border-neutral-800 text-amber-400'
-                    : 'bg-amber-100/80 border-amber-300/80 text-amber-900 font-semibold'
-                }`}
-              >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-neutral-800 bg-neutral-900/80 text-amber-400 text-xs font-mono mb-3 font-semibold">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                 <span>Start A Project</span>
               </div>
-              <h2
-                className={`text-2xl sm:text-4xl lg:text-6xl font-display font-extrabold tracking-tight ${
-                  isDark ? 'text-white' : 'text-neutral-950'
-                }`}
-              >
+              <h2 className="text-2xl sm:text-4xl lg:text-6xl font-display font-extrabold tracking-tight text-white">
                 Let&apos;s build something great.
               </h2>
             </div>
 
-            <p
-              className={`text-sm sm:text-base max-w-lg leading-relaxed ${
-                isDark ? 'text-neutral-400' : 'text-neutral-700'
-              }`}
-            >
+            <p className="text-sm sm:text-base max-w-lg leading-relaxed text-neutral-400">
               Have a project in mind, need a full-stack web application, or want to consult on technical design? Send an inquiry below.
             </p>
           </div>
@@ -173,55 +150,31 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Direct Communication Channels (Left Column) */}
           <ScrollReveal direction="right" className="lg:col-span-5 space-y-6">
-            <div
-              className={`p-5 sm:p-7 rounded-2xl border space-y-5 sm:space-y-6 ${
-                isDark ? 'bg-neutral-900/30 border-neutral-800' : 'bg-white border-neutral-300'
-              }`}
-            >
+            <div className="p-5 sm:p-7 rounded-2xl border border-neutral-800 bg-neutral-900/40 space-y-5 sm:space-y-6">
               <div className="space-y-2">
-                <h3
-                  className={`font-display font-bold text-lg ${
-                    isDark ? 'text-neutral-100' : 'text-neutral-950'
-                  }`}
-                >
+                <h3 className="font-display font-bold text-lg text-white">
                   Direct Inquiries & Availability
                 </h3>
-                <p
-                  className={`text-xs leading-relaxed ${
-                    isDark ? 'text-neutral-400' : 'text-neutral-600'
-                  }`}
-                >
+                <p className="text-xs leading-relaxed text-neutral-400">
                   I typically respond within 12–24 hours on business days.
                 </p>
               </div>
 
-              {/* Email Card with Copy Button & Morphic Icon */}
-              <div
-                className={`p-4 rounded-xl border flex items-center justify-between gap-3 transition-colors ${
-                  isDark ? 'bg-neutral-950/60 border-neutral-800' : 'bg-neutral-50 border-neutral-200'
-                }`}
-              >
+              {/* Email Card with Copy Button */}
+              <div className="p-4 rounded-xl border border-neutral-800 bg-neutral-950/60 flex items-center justify-between gap-3 transition-colors">
                 <div className="flex items-center gap-3 overflow-hidden">
                   <MorphicIcon
                     icon={<GmailIcon className="w-4 h-4" />}
                     color="amber"
                     size="sm"
-                    isDark={isDark}
+                    isDark={true}
                     title="Gmail"
                   />
                   <div className="truncate">
-                    <p
-                      className={`text-[10px] font-mono uppercase ${
-                        isDark ? 'text-neutral-400' : 'text-neutral-500 font-semibold'
-                      }`}
-                    >
+                    <p className="text-[10px] font-mono uppercase text-neutral-400">
                       Direct Gmail
                     </p>
-                    <p
-                      className={`text-xs sm:text-sm font-mono font-semibold truncate ${
-                        isDark ? 'text-neutral-100' : 'text-neutral-900'
-                      }`}
-                    >
+                    <p className="text-xs sm:text-sm font-mono font-semibold truncate text-white">
                       {emailAddress}
                     </p>
                   </div>
@@ -235,10 +188,8 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                   title="Copy email to clipboard"
                   className={`p-2 rounded-lg border text-xs font-mono transition-colors flex-shrink-0 ${
                     copiedEmail
-                      ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-600 dark:text-emerald-400'
-                      : isDark
-                        ? 'border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-800'
-                        : 'border-neutral-300 text-neutral-700 hover:text-neutral-950 hover:bg-neutral-100'
+                      ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400'
+                      : 'border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-800'
                   }`}
                 >
                   {copiedEmail ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
@@ -254,47 +205,31 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                 target="_blank"
                 rel="noreferrer"
                 whileHover={{ x: 4 }}
-                className={`p-4 rounded-xl border flex items-center justify-between transition-all group ${
-                  isDark
-                    ? 'bg-neutral-950/60 border-neutral-800 hover:border-emerald-500/50 hover:bg-neutral-950'
-                    : 'bg-neutral-50 border-neutral-200 hover:border-emerald-500 hover:bg-emerald-50/30'
-                }`}
+                className="p-4 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-emerald-500/50 hover:bg-neutral-950 flex items-center justify-between transition-all group"
               >
                 <div className="flex items-center gap-3">
                   <MorphicIcon
                     icon={<WhatsappIcon className="w-4 h-4" />}
                     color="emerald"
                     size="sm"
-                    isDark={isDark}
+                    isDark={true}
                     title="WhatsApp"
                   />
                   <div>
-                    <p
-                      className={`text-[10px] font-mono uppercase ${
-                        isDark ? 'text-neutral-400' : 'text-neutral-500 font-semibold'
-                      }`}
-                    >
+                    <p className="text-[10px] font-mono uppercase text-neutral-400">
                       Instant WhatsApp
                     </p>
-                    <p
-                      className={`text-xs sm:text-sm font-mono font-semibold ${
-                        isDark ? 'text-neutral-100' : 'text-neutral-900'
-                      }`}
-                    >
+                    <p className="text-xs sm:text-sm font-mono font-semibold text-white">
                       +234 704 353 4602
                     </p>
                   </div>
                 </div>
-                <ExternalLink className="w-4 h-4 text-neutral-400 group-hover:text-emerald-500 transition-colors" />
+                <ExternalLink className="w-4 h-4 text-neutral-400 group-hover:text-emerald-400 transition-colors" />
               </motion.a>
 
               {/* Social Channels */}
-              <div className={`pt-4 border-t space-y-3 ${isDark ? 'border-neutral-800/80' : 'border-neutral-200'}`}>
-                <p
-                  className={`text-xs font-mono uppercase ${
-                    isDark ? 'text-neutral-400' : 'text-neutral-600 font-semibold'
-                  }`}
-                >
+              <div className="pt-4 border-t border-neutral-800/80 space-y-3">
+                <p className="text-xs font-mono uppercase text-neutral-400">
                   Professional Networks
                 </p>
                 <div className="grid grid-cols-3 gap-2">
@@ -304,11 +239,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                     rel="noreferrer"
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}
-                    className={`p-2.5 rounded-xl border text-center text-xs font-mono transition-colors flex items-center justify-center gap-1.5 ${
-                      isDark
-                        ? 'border-neutral-800 bg-neutral-950/50 text-neutral-300 hover:border-neutral-700 hover:text-white'
-                        : 'border-neutral-200 bg-neutral-50 text-neutral-800 hover:border-neutral-300 hover:text-neutral-950 font-medium'
-                    }`}
+                    className="min-h-[44px] p-2.5 rounded-xl border border-neutral-800 bg-neutral-950/50 text-neutral-300 hover:border-neutral-700 hover:text-white text-center text-xs font-mono transition-colors flex items-center justify-center gap-1.5 touch-manipulation"
                   >
                     <GithubIcon className="w-3.5 h-3.5" />
                     <span>GitHub</span>
@@ -319,11 +250,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                     rel="noreferrer"
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}
-                    className={`p-2.5 rounded-xl border text-center text-xs font-mono transition-colors flex items-center justify-center gap-1.5 ${
-                      isDark
-                        ? 'border-neutral-800 bg-neutral-950/50 text-neutral-300 hover:border-neutral-700 hover:text-white'
-                        : 'border-neutral-200 bg-neutral-50 text-neutral-800 hover:border-neutral-300 hover:text-neutral-950 font-medium'
-                    }`}
+                    className="min-h-[44px] p-2.5 rounded-xl border border-neutral-800 bg-neutral-950/50 text-neutral-300 hover:border-neutral-700 hover:text-white text-center text-xs font-mono transition-colors flex items-center justify-center gap-1.5 touch-manipulation"
                   >
                     <LinkedinIcon className="w-3.5 h-3.5" />
                     <span>LinkedIn</span>
@@ -334,11 +261,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                     rel="noreferrer"
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}
-                    className={`p-2.5 rounded-xl border text-center text-xs font-mono transition-colors flex items-center justify-center gap-1.5 ${
-                      isDark
-                        ? 'border-neutral-800 bg-neutral-950/50 text-neutral-300 hover:border-neutral-700 hover:text-white'
-                        : 'border-neutral-200 bg-neutral-50 text-neutral-800 hover:border-neutral-300 hover:text-neutral-950 font-medium'
-                    }`}
+                    className="min-h-[44px] p-2.5 rounded-xl border border-neutral-800 bg-neutral-950/50 text-neutral-300 hover:border-neutral-700 hover:text-white text-center text-xs font-mono transition-colors flex items-center justify-center gap-1.5 touch-manipulation"
                   >
                     <XIcon className="w-3.5 h-3.5" />
                     <span>X</span>
@@ -353,35 +276,25 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
             <form
               id="portfolio-contact-form"
               onSubmit={handleSubmit}
-              className={`p-7 sm:p-9 rounded-2xl border space-y-6 ${
-                isDark ? 'bg-neutral-900/40 border-neutral-800' : 'bg-white border-neutral-300 shadow-sm'
-              }`}
+              className="p-7 sm:p-9 rounded-2xl border border-neutral-800 bg-neutral-900/50 space-y-6 shadow-xl"
             >
               {isSuccess ? (
                 <div className="py-8 sm:py-10 flex flex-col items-center text-center space-y-5">
-                  <div className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500 shadow-sm">
+                  <div className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-sm">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   
                   <div className="space-y-2 max-w-md">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-medium">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-medium">
                       <Check className="w-3.5 h-3.5" />
                       <span>Inquiry Dispatched</span>
                     </div>
-                    <h3
-                      className={`text-xl sm:text-2xl font-display font-bold ${
-                        isDark ? 'text-white' : 'text-neutral-950'
-                      }`}
-                    >
+                    <h3 className="text-xl sm:text-2xl font-display font-bold text-white">
                       Thank you, {formData.name || 'Friend'}!
                     </h3>
-                    <p
-                      className={`text-xs sm:text-sm leading-relaxed ${
-                        isDark ? 'text-neutral-400' : 'text-neutral-600'
-                      }`}
-                    >
+                    <p className="text-xs sm:text-sm leading-relaxed text-neutral-400">
                       Your project inquiry has been delivered directly to{' '}
-                      <strong className={isDark ? 'text-neutral-200' : 'text-neutral-900'}>
+                      <strong className="text-neutral-200">
                         {emailAddress}
                       </strong>
                       . Joshua will review the scope and reply within 12–24 hours.
@@ -389,12 +302,8 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                   </div>
 
                   {/* Immediate Direct Action Options */}
-                  <div className="w-full max-w-md p-4 rounded-xl border space-y-3 text-left transition-colors bg-neutral-950/40 border-neutral-800">
-                    <p
-                      className={`text-[11px] font-mono uppercase tracking-wider ${
-                        isDark ? 'text-neutral-400' : 'text-neutral-300'
-                      }`}
-                    >
+                  <div className="w-full max-w-md p-4 rounded-xl border border-neutral-800 bg-neutral-950/60 space-y-3 text-left transition-colors">
+                    <p className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">
                       Instant Communication Options
                     </p>
                     
@@ -440,11 +349,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                         message: ''
                       });
                     }}
-                    className={`mt-2 px-5 py-2 text-xs font-mono uppercase tracking-wider rounded-xl border transition-colors ${
-                      isDark
-                        ? 'border-neutral-800 bg-neutral-900 text-neutral-300 hover:bg-neutral-800'
-                        : 'border-neutral-300 bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
-                    }`}
+                    className="mt-2 px-5 py-2 text-xs font-mono uppercase tracking-wider rounded-xl border border-neutral-800 bg-neutral-900 text-neutral-300 hover:bg-neutral-800 transition-colors"
                   >
                     Send Another Message
                   </button>
@@ -463,9 +368,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                     <div className="space-y-1.5">
                       <label
                         htmlFor="contact-name"
-                        className={`text-xs font-mono uppercase ${
-                          isDark ? 'text-neutral-400' : 'text-neutral-700 font-semibold'
-                        }`}
+                        className="text-xs font-mono uppercase text-neutral-400"
                       >
                         Your Name *
                       </label>
@@ -476,11 +379,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="Jane Doe"
-                        className={`w-full px-4 py-3 rounded-xl border text-xs sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400 ${
-                          isDark
-                            ? 'bg-neutral-950/70 border-neutral-800 text-neutral-100 placeholder:text-neutral-600'
-                            : 'bg-neutral-50 border-neutral-300 text-neutral-900 placeholder:text-neutral-400'
-                        }`}
+                        className="w-full px-4 py-3.5 sm:py-3 rounded-xl border border-neutral-800 bg-neutral-950/70 text-neutral-100 placeholder:text-neutral-600 text-base sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400"
                       />
                     </div>
 
@@ -488,9 +387,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                     <div className="space-y-1.5">
                       <label
                         htmlFor="contact-email"
-                        className={`text-xs font-mono uppercase ${
-                          isDark ? 'text-neutral-400' : 'text-neutral-700 font-semibold'
-                        }`}
+                        className="text-xs font-mono uppercase text-neutral-400"
                       >
                         Your Email *
                       </label>
@@ -501,11 +398,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="jane@company.com"
-                        className={`w-full px-4 py-3 rounded-xl border text-xs sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400 ${
-                          isDark
-                            ? 'bg-neutral-950/70 border-neutral-800 text-neutral-100 placeholder:text-neutral-600'
-                            : 'bg-neutral-50 border-neutral-300 text-neutral-900 placeholder:text-neutral-400'
-                        }`}
+                        className="w-full px-4 py-3.5 sm:py-3 rounded-xl border border-neutral-800 bg-neutral-950/70 text-neutral-100 placeholder:text-neutral-600 text-base sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400"
                       />
                     </div>
                   </div>
@@ -514,9 +407,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                   <div className="space-y-1.5">
                     <label
                       htmlFor="contact-project-type"
-                      className={`text-xs font-mono uppercase ${
-                        isDark ? 'text-neutral-400' : 'text-neutral-700 font-semibold'
-                      }`}
+                      className="text-xs font-mono uppercase text-neutral-400"
                     >
                       Project Classification
                     </label>
@@ -524,11 +415,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                       id="contact-project-type"
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                      className={`w-full px-4 py-3 rounded-xl border text-xs sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400 ${
-                        isDark
-                          ? 'bg-neutral-950/70 border-neutral-800 text-neutral-100'
-                          : 'bg-neutral-50 border-neutral-300 text-neutral-900'
-                      }`}
+                      className="w-full px-4 py-3.5 sm:py-3 rounded-xl border border-neutral-800 bg-neutral-950/70 text-neutral-100 text-base sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400"
                     >
                       {projectTypes.map((type) => (
                         <option key={type} value={type}>
@@ -542,9 +429,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                   <div className="space-y-1.5">
                     <label
                       htmlFor="contact-budget"
-                      className={`text-xs font-mono uppercase ${
-                        isDark ? 'text-neutral-400' : 'text-neutral-700 font-semibold'
-                      }`}
+                      className="text-xs font-mono uppercase text-neutral-400"
                     >
                       Estimated Budget Range
                     </label>
@@ -552,11 +437,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                       id="contact-budget"
                       value={formData.budget}
                       onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      className={`w-full px-4 py-3 rounded-xl border text-xs sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400 ${
-                        isDark
-                          ? 'bg-neutral-950/70 border-neutral-800 text-neutral-100'
-                          : 'bg-neutral-50 border-neutral-300 text-neutral-900'
-                      }`}
+                      className="w-full px-4 py-3.5 sm:py-3 rounded-xl border border-neutral-800 bg-neutral-950/70 text-neutral-100 text-base sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400"
                     >
                       {budgetRanges.map((b) => (
                         <option key={b} value={b}>
@@ -570,9 +451,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                   <div className="space-y-1.5">
                     <label
                       htmlFor="contact-message"
-                      className={`text-xs font-mono uppercase ${
-                        isDark ? 'text-neutral-400' : 'text-neutral-700 font-semibold'
-                      }`}
+                      className="text-xs font-mono uppercase text-neutral-400"
                     >
                       Project Details & Scope *
                     </label>
@@ -583,11 +462,7 @@ export const Contact: React.FC<ContactProps> = ({ isDark }) => {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Briefly describe what you are looking to design or build..."
-                      className={`w-full px-4 py-3 rounded-xl border text-xs sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400 ${
-                        isDark
-                          ? 'bg-neutral-950/70 border-neutral-800 text-neutral-100 placeholder:text-neutral-600'
-                          : 'bg-neutral-50 border-neutral-300 text-neutral-900 placeholder:text-neutral-400'
-                      }`}
+                      className="w-full px-4 py-3.5 sm:py-3 rounded-xl border border-neutral-800 bg-neutral-950/70 text-neutral-100 placeholder:text-neutral-600 text-base sm:text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-amber-400"
                     />
                   </div>
 

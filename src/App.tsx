@@ -11,33 +11,22 @@ import { Footer } from './components/Footer';
 import { ProjectModal } from './components/ProjectModal';
 import { CvModal } from './components/CvModal';
 import { CustomCursor } from './components/CustomCursor';
+import { SectionSeparator } from './components/ui/SectionSeparator';
+import { BackToTop } from './components/ui/BackToTop';
 import { Project } from './types';
 
 export default function App() {
-  const [isDark, setIsDark] = useState<boolean>(true);
   const [activeSection, setActiveSection] = useState<string>('home');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isCvOpen, setIsCvOpen] = useState<boolean>(false);
 
-  // Sync theme with html element and favicon
+  // Favicon setup
   useEffect(() => {
-    const root = document.documentElement;
-    if (isDark) {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.remove('dark');
-      root.classList.add('light');
-    }
-
-    // Dynamic Favicon based on theme
     const favicon = document.querySelector("link[rel~='icon']") as HTMLLinkElement | null;
     if (favicon) {
-      favicon.href = isDark
-        ? 'https://res.cloudinary.com/doujptiz/image/upload/v1787233211/20260803_131853_yiypyb.png'
-        : 'https://res.cloudinary.com/doujptiz/image/upload/v1787232870/20260803_131813_egdl3q.png';
+      favicon.href = 'https://res.cloudinary.com/doujptiz/image/upload/v1787233211/20260803_131853_yiypyb.png';
     }
-  }, [isDark]);
+  }, []);
 
   // ScrollSpy to determine active section in navbar
   useEffect(() => {
@@ -62,56 +51,104 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleTheme = () => {
-    setIsDark((prev) => !prev);
-  };
-
   return (
     <div
       id="portfolio-root"
-      className={`min-h-screen transition-colors duration-300 font-sans ${
-        isDark ? 'bg-neutral-950 text-neutral-100' : 'bg-neutral-50 text-neutral-900'
-      }`}
+      className="min-h-screen bg-[#0a0c10] text-neutral-100 font-sans antialiased selection:bg-amber-400 selection:text-neutral-950"
     >
-      {/* Desktop Magnetic Custom Cursor */}
-      <CustomCursor isDark={isDark} />
+      {/* Desktop Custom Cursor */}
+      <CustomCursor />
 
       {/* Floating Navbar */}
-      <Navbar
-        isDark={isDark}
-        onToggleTheme={toggleTheme}
-        activeSection={activeSection}
-      />
+      <Navbar activeSection={activeSection} />
 
-      {/* Main Content Sections */}
+      {/* Main Content Sections with Alternating Visual Rhythm & Decorative Technical Separators */}
       <main id="main-content-flow">
-        <Hero isDark={isDark} onOpenCv={() => setIsCvOpen(true)} />
-        <About isDark={isDark} />
-        <Services isDark={isDark} />
-        <Projects
-          isDark={isDark}
-          onSelectProject={(project) => setSelectedProject(project)}
+        <Hero onOpenCv={() => setIsCvOpen(true)} />
+
+        {/* Separator 1: Hero (Dark) -> About (White) */}
+        <SectionSeparator
+          from="dark"
+          to="light"
+          label="Core Identity & Architecture"
+          code="01 // ABOUT"
+          icon="sparkles"
         />
-        <TechStack isDark={isDark} />
-        <Experience isDark={isDark} />
-        <Contact isDark={isDark} />
+
+        <About />
+
+        {/* Separator 2: About (White) -> Services (Dark) */}
+        <SectionSeparator
+          from="light"
+          to="dark"
+          label="Capabilities & Services"
+          code="02 // OFFERINGS"
+          icon="layers"
+        />
+
+        <Services />
+
+        {/* Separator 3: Services (Dark) -> Projects (White) */}
+        <SectionSeparator
+          from="dark"
+          to="light"
+          label="Selected Works & Case Studies"
+          code="03 // PORTFOLIO"
+          icon="code"
+        />
+
+        <Projects onSelectProject={(project) => setSelectedProject(project)} />
+
+        {/* Separator 4: Projects (White) -> TechStack (Dark) */}
+        <SectionSeparator
+          from="light"
+          to="dark"
+          label="Production Stack & Competencies"
+          code="04 // TECH"
+          icon="cpu"
+        />
+
+        <TechStack />
+
+        {/* Separator 5: TechStack (Dark) -> Experience (White) */}
+        <SectionSeparator
+          from="dark"
+          to="light"
+          label="Career History & Roles"
+          code="05 // EXPERIENCE"
+          icon="disc"
+        />
+
+        <Experience />
+
+        {/* Separator 6: Experience (White) -> Contact (Dark) */}
+        <SectionSeparator
+          from="light"
+          to="dark"
+          label="Initiate Engagement"
+          code="06 // CONTACT"
+          icon="sparkles"
+        />
+
+        <Contact />
       </main>
 
       {/* Footer */}
-      <Footer isDark={isDark} />
+      <Footer />
+
+      {/* Floating Back to Top Control */}
+      <BackToTop />
 
       {/* Case Study Detail Modal */}
       <ProjectModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
-        isDark={isDark}
       />
 
       {/* Structured CV Modal */}
       <CvModal
         isOpen={isCvOpen}
         onClose={() => setIsCvOpen(false)}
-        isDark={isDark}
       />
     </div>
   );

@@ -4,11 +4,7 @@ import { ArrowUp } from 'lucide-react';
 import { ScrollReveal } from './ui/ScrollReveal';
 import { GithubIcon, LinkedinIcon, XIcon, WhatsappIcon, GmailIcon } from './ui/BrandIcons';
 
-interface FooterProps {
-  isDark: boolean;
-}
-
-export const Footer: React.FC<FooterProps> = ({ isDark }) => {
+export const Footer: React.FC = () => {
   const [lagosTime, setLagosTime] = useState('');
 
   useEffect(() => {
@@ -42,15 +38,12 @@ export const Footer: React.FC<FooterProps> = ({ isDark }) => {
     { name: 'Contact', href: '#contact' }
   ];
 
-  const lightLogo = 'https://res.cloudinary.com/doujptiz/image/upload/v1787232870/20260803_131813_egdl3q.png';
   const darkLogo = 'https://res.cloudinary.com/doujptiz/image/upload/v1787233211/20260803_131853_yiypyb.png';
 
   return (
     <footer
       id="main-portfolio-footer"
-      className={`border-t py-14 px-4 sm:px-6 lg:px-8 transition-colors duration-300 overflow-hidden ${
-        isDark ? 'bg-neutral-950 border-neutral-800 text-neutral-400' : 'bg-neutral-900 border-neutral-800 text-neutral-300'
-      }`}
+      className="border-t border-[#1a1d26] py-14 px-4 sm:px-6 lg:px-8 bg-[#090b0f] text-neutral-400 transition-colors duration-300 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Top Info & Brand Bar */}
@@ -171,7 +164,7 @@ export const Footer: React.FC<FooterProps> = ({ isDark }) => {
         {/* Copyright */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-6 border-t border-neutral-800/60 text-[11px] font-mono text-neutral-500">
           <p>© {new Date().getFullYear()} Joshua Egesi Enyinnaya (Joshware). All rights reserved.</p>
-          <p>Zero Box Shadows • Production Engineering & UI/UX Design</p>
+          <p>Production Engineering & UI/UX Design</p>
         </div>
       </div>
     </footer>

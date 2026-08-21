@@ -5,11 +5,10 @@ import { MorphicIcon } from './ui/MorphicIcon';
 import { GithubIcon, LinkedinIcon, XIcon, WhatsappIcon, GmailIcon } from './ui/BrandIcons';
 
 interface HeroProps {
-  isDark: boolean;
   onOpenCv: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ isDark, onOpenCv }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
   const bgImage = 'https://res.cloudinary.com/doujptiz/image/upload/v1785239156/samples/cup-on-a-table.jpg';
 
   const scrollToSection = (id: string) => {
@@ -76,13 +75,7 @@ export const Hero: React.FC<HeroProps> = ({ isDark, onOpenCv }) => {
           referrerPolicy="no-referrer"
         />
         {/* Subtle gradient vignette to preserve full image vividness while ensuring crisp text readability */}
-        <div
-          className={`absolute inset-0 ${
-            isDark
-              ? 'bg-gradient-to-b from-neutral-950/70 via-neutral-950/40 to-neutral-950/95'
-              : 'bg-gradient-to-b from-neutral-950/65 via-neutral-950/35 to-neutral-950/90'
-          }`}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0c10]/80 via-[#0a0c10]/40 to-[#0a0c10]" />
         <div className="absolute inset-0 bg-radial-vignette opacity-50" />
       </div>
 

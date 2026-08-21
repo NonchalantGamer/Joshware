@@ -2,11 +2,10 @@ import React, { useRef, useEffect, useState } from 'react';
 import { RotateCw, Play, Pause, Eye, Box, Compass, Sparkles } from 'lucide-react';
 
 interface Cosmo3DCanvasProps {
-  isDark: boolean;
   interactive?: boolean;
 }
 
-export const Cosmo3DCanvas: React.FC<Cosmo3DCanvasProps> = ({ isDark, interactive = true }) => {
+export const Cosmo3DCanvas: React.FC<Cosmo3DCanvasProps> = ({ interactive = true }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [renderMode, setRenderMode] = useState<'wireframe' | 'solid' | 'points'>('solid');
   const [geometryType, setGeometryType] = useState<'icosahedron' | 'torus' | 'octahedron'>('icosahedron');
@@ -210,23 +209,17 @@ export const Cosmo3DCanvas: React.FC<Cosmo3DCanvasProps> = ({ isDark, interactiv
           ctx.closePath();
 
           if (renderMode === 'solid') {
-            if (isDark) {
-              const rVal = Math.floor(251 * dot * 0.9 + 20);
-              const gVal = Math.floor(191 * dot * 0.9 + 15);
-              const bVal = Math.floor(36 * dot * 0.9 + 10);
-              ctx.fillStyle = `rgba(${rVal}, ${gVal}, ${bVal}, ${0.85 * dot + 0.15})`;
-              ctx.strokeStyle = `rgba(251, 191, 36, 0.35)`;
-            } else {
-              const grey = Math.floor(40 + (1 - dot) * 160);
-              ctx.fillStyle = `rgba(${grey}, ${grey}, ${grey}, 0.8)`;
-              ctx.strokeStyle = `rgba(10, 10, 10, 0.4)`;
-            }
+            const rVal = Math.floor(251 * dot * 0.9 + 20);
+            const gVal = Math.floor(191 * dot * 0.9 + 15);
+            const bVal = Math.floor(36 * dot * 0.9 + 10);
+            ctx.fillStyle = `rgba(${rVal}, ${gVal}, ${bVal}, ${0.85 * dot + 0.15})`;
+            ctx.strokeStyle = `rgba(251, 191, 36, 0.35)`;
             ctx.lineWidth = 1;
             ctx.fill();
             ctx.stroke();
           } else {
             // Wireframe only
-            ctx.strokeStyle = isDark ? 'rgba(251, 191, 36, 0.75)' : 'rgba(23, 23, 23, 0.85)';
+            ctx.strokeStyle = 'rgba(251, 191, 36, 0.75)';
             ctx.lineWidth = 1.2;
             ctx.stroke();
           }
@@ -236,8 +229,8 @@ export const Cosmo3DCanvas: React.FC<Cosmo3DCanvasProps> = ({ isDark, interactiv
       if (renderMode === 'points') {
         projected.forEach((p) => {
           ctx.beginPath();
-          ctx.arc(p.px, p.py, isDark ? 3 : 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = isDark ? '#fbbf24' : '#171717';
+          ctx.arc(p.px, p.py, 3, 0, Math.PI * 2);
+          ctx.fillStyle = '#fbbf24';
           ctx.fill();
         });
       }
@@ -251,7 +244,7 @@ export const Cosmo3DCanvas: React.FC<Cosmo3DCanvasProps> = ({ isDark, interactiv
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', updateCanvasSize);
     };
-  }, [geometryType, renderMode, isRotating, isDark]);
+  }, [geometryType, renderMode, isRotating]);
 
   // Pointer interactions
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -276,9 +269,7 @@ export const Cosmo3DCanvas: React.FC<Cosmo3DCanvasProps> = ({ isDark, interactiv
   return (
     <div
       id="cosmo3d-viewport-container"
-      className={`relative w-full h-[360px] sm:h-[420px] rounded-2xl border overflow-hidden transition-all duration-300 flex flex-col justify-between p-4 ${
-        isDark ? 'bg-neutral-950 border-neutral-800 text-neutral-200' : 'bg-neutral-50 border-neutral-300 text-neutral-800'
-      }`}
+      className="relative w-full h-[360px] sm:h-[420px] rounded-2xl border border-[#1e222d] bg-[#0a0c10] text-neutral-200 overflow-hidden transition-all duration-300 flex flex-col justify-between p-4"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}

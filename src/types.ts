@@ -33,6 +33,8 @@ export interface Service {
   id: string;
   number: string;
   title: string;
+  tag?: string;
+  image: string;
   shortDescription: string;
   fullDescription: string;
   deliverables: string[];

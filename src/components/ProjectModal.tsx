@@ -7,10 +7,9 @@ import { Cosmo3DCanvas } from './Cosmo3DCanvas';
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
-  isDark: boolean;
 }
 
-export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, isDark }) => {
+export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
   const [zoomScreenshot, setZoomScreenshot] = useState<{
     title: string;
     caption: string;
@@ -54,7 +53,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
     <AnimatePresence>
       <div
         id="project-case-study-backdrop"
-        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-neutral-950/85 backdrop-blur-md overflow-y-auto"
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto"
         onClick={onClose}
       >
         <motion.div
@@ -64,23 +63,15 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
           exit={{ opacity: 0, scale: 0.96, y: 20 }}
           transition={{ duration: 0.25, ease: 'easeOut' }}
           onClick={(e) => e.stopPropagation()}
-          className={`relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-2xl border overflow-hidden transition-colors shadow-2xl ${
-            isDark
-              ? 'bg-neutral-900 border-neutral-800 text-neutral-100'
-              : 'bg-white border-neutral-300 text-neutral-900'
-          }`}
+          className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-2xl border border-[#1e222d] bg-[#0e1017] text-neutral-100 overflow-hidden shadow-2xl"
         >
           {/* Header Bar */}
-          <div
-            className={`flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b flex-shrink-0 ${
-              isDark ? 'bg-neutral-950/70 border-neutral-800' : 'bg-neutral-50 border-neutral-200'
-            }`}
-          >
+          <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-[#1e222d] bg-[#0a0c10] flex-shrink-0">
             <div className="flex items-center gap-2 sm:gap-3 truncate mr-2">
-              <span className="px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-xs font-mono font-medium rounded-full bg-amber-400/10 text-amber-500 border border-amber-500/20 flex-shrink-0">
+              <span className="px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-xs font-mono font-medium rounded-full bg-amber-400/10 text-amber-400 border border-amber-400/20 flex-shrink-0">
                 {project.badge}
               </span>
-              <h2 className="font-display font-bold text-sm sm:text-lg tracking-tight truncate">
+              <h2 className="font-display font-bold text-sm sm:text-lg tracking-tight truncate text-white">
                 {project.title}
               </h2>
             </div>
@@ -91,11 +82,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
                   href={project.liveUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className={`inline-flex items-center gap-1.5 min-h-[40px] px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-mono font-medium border transition-colors touch-manipulation ${
-                    isDark
-                      ? 'border-amber-400/30 bg-amber-400/10 text-amber-400 hover:bg-amber-400/20'
-                      : 'border-neutral-900 bg-neutral-950 text-white hover:bg-neutral-800'
-                  }`}
+                  className="inline-flex items-center gap-1.5 min-h-[44px] px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-amber-400/30 bg-amber-400/10 text-amber-400 hover:bg-amber-400/20 transition-colors touch-manipulation"
                 >
                   <span className="hidden xs:inline">Launch Live</span>
                   <span className="xs:hidden">Live</span>
@@ -107,11 +94,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
                 type="button"
                 onClick={onClose}
                 aria-label="Close Case Study"
-                className={`min-w-[40px] min-h-[40px] p-2 rounded-lg border transition-colors flex items-center justify-center touch-manipulation ${
-                  isDark
-                    ? 'border-neutral-800 text-neutral-400 hover:text-neutral-100 hover:bg-neutral-800'
-                    : 'border-neutral-200 text-neutral-500 hover:text-neutral-950 hover:bg-neutral-100'
-                }`}
+                className="min-w-[44px] min-h-[44px] p-2.5 rounded-lg border border-[#1e222d] text-neutral-400 hover:text-neutral-100 hover:bg-[#151922] transition-colors flex items-center justify-center touch-manipulation cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -124,28 +107,24 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
             {project.id === 'cosmo3d' && (
               <div className="space-y-2">
                 <p className="text-xs font-mono text-neutral-400 flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                   <span>Live Interactive 3D Canvas (Drag to rotate, switch geometry below):</span>
                 </p>
-                <Cosmo3DCanvas isDark={isDark} interactive={true} />
+                <Cosmo3DCanvas interactive={true} />
               </div>
             )}
 
             {/* All Screenshots Display with Descriptions */}
             {project.screenshots && project.screenshots.length > 0 ? (
               <div className="space-y-6">
-                <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-3.5 ${
-                  isDark ? 'border-neutral-800' : 'border-neutral-300'
-                }`}>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1e222d] pb-3.5">
                   <div className="flex items-center gap-2">
-                    <ImageIcon className="w-4 h-4 text-amber-500 flex-shrink-0" />
-                    <h3 className={`text-sm sm:text-base font-mono font-bold uppercase tracking-wider ${
-                      isDark ? 'text-amber-400' : 'text-neutral-900'
-                    }`}>
+                    <ImageIcon className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                    <h3 className="text-sm sm:text-base font-mono font-bold uppercase tracking-wider text-amber-400">
                       System Architecture & Interface Showcase ({project.screenshots.length} Views)
                     </h3>
                   </div>
-                  <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">
+                  <span className="text-xs font-mono text-neutral-400">
                     All system modules detailed below
                   </span>
                 </div>
@@ -154,30 +133,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
                   {project.screenshots.map((s, idx) => (
                     <div
                       key={s.title}
-                      className={`rounded-2xl border overflow-hidden transition-all duration-300 shadow-sm ${
-                        isDark
-                          ? 'bg-neutral-950/70 border-neutral-800 hover:border-neutral-700'
-                          : 'bg-white border-neutral-300 hover:border-neutral-400'
-                      }`}
+                      className="rounded-2xl border border-[#1e222d] bg-[#0a0c10] overflow-hidden transition-all duration-300 shadow-sm hover:border-[#2a3040]"
                     >
                       {/* Screenshot Header */}
-                      <div className={`px-4 sm:px-6 py-3.5 border-b flex flex-wrap items-center justify-between gap-3 ${
-                        isDark ? 'bg-neutral-900/60 border-neutral-800' : 'bg-neutral-100/90 border-neutral-200'
-                      }`}>
+                      <div className="px-4 sm:px-6 py-3.5 border-b border-[#1e222d] bg-[#11141c] flex flex-wrap items-center justify-between gap-3">
                         <div className="flex items-center gap-2.5">
-                          <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-amber-400/10 text-amber-600 dark:text-amber-400 border border-amber-400/20">
+                          <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-amber-400/10 text-amber-400 border border-amber-400/20">
                             0{idx + 1}
                           </span>
                           {s.tag && (
-                            <span className={`px-2 py-0.5 rounded text-xs font-mono font-semibold uppercase border ${
-                              isDark ? 'bg-neutral-950 border-neutral-800 text-neutral-300' : 'bg-white border-neutral-300 text-neutral-800'
-                            }`}>
+                            <span className="px-2 py-0.5 rounded text-xs font-mono font-semibold uppercase border bg-[#0a0c10] border-[#1e222d] text-neutral-300">
                               {s.tag}
                             </span>
                           )}
-                          <h4 className={`text-sm sm:text-base font-display font-bold ${
-                            isDark ? 'text-white' : 'text-neutral-950'
-                          }`}>
+                          <h4 className="text-sm sm:text-base font-display font-bold text-white">
                             {s.title}
                           </h4>
                         </div>
@@ -186,24 +155,16 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
                           <button
                             type="button"
                             onClick={() => setZoomScreenshot(s)}
-                            className={`px-3 py-1.5 rounded-lg border text-xs font-mono transition-colors flex items-center gap-1.5 ${
-                              isDark
-                                ? 'bg-neutral-950 border-neutral-800 text-neutral-300 hover:text-white hover:border-neutral-700'
-                                : 'bg-white border-neutral-300 text-neutral-800 hover:bg-neutral-50'
-                            }`}
+                            className="px-3 py-1.5 rounded-lg border border-[#1e222d] bg-[#0a0c10] text-neutral-300 hover:text-white hover:border-neutral-600 text-xs font-mono transition-colors flex items-center gap-1.5 cursor-pointer"
                           >
-                            <ZoomIn className="w-3.5 h-3.5 text-amber-500" />
+                            <ZoomIn className="w-3.5 h-3.5 text-amber-400" />
                             <span>Preview</span>
                           </button>
                           <a
                             href={s.url}
                             target="_blank"
                             rel="noreferrer"
-                            className={`px-3 py-1.5 rounded-lg border text-xs font-mono transition-colors flex items-center gap-1.5 ${
-                              isDark
-                                ? 'bg-neutral-950 border-neutral-800 text-amber-400 hover:border-neutral-700'
-                                : 'bg-white border-neutral-300 text-amber-900 font-semibold hover:bg-neutral-50'
-                            }`}
+                            className="px-3 py-1.5 rounded-lg border border-[#1e222d] bg-[#0a0c10] text-amber-400 hover:border-neutral-600 text-xs font-mono transition-colors flex items-center gap-1.5"
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
                             <span>Full Res</span>
@@ -214,7 +175,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
                       {/* Screenshot Image Container */}
                       <div
                         onClick={() => setZoomScreenshot(s)}
-                        className="relative w-full bg-neutral-950/60 group cursor-zoom-in overflow-hidden border-b border-neutral-800/60 flex items-center justify-center min-h-[220px]"
+                        className="relative w-full bg-black/50 group cursor-zoom-in overflow-hidden border-b border-[#1e222d] flex items-center justify-center min-h-[220px]"
                       >
                         <img
                           src={s.url}
@@ -222,7 +183,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
                           className="w-full h-auto max-h-[460px] object-contain mx-auto transition-transform duration-300 group-hover:scale-[1.01]"
                           referrerPolicy="no-referrer"
                         />
-                        <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
                           <span className="px-3.5 py-1.5 rounded-xl bg-neutral-950/90 text-amber-400 font-mono text-xs border border-neutral-700 flex items-center gap-2 shadow-xl backdrop-blur-md">
                             <ZoomIn className="w-4 h-4" />
                             <span>Click to enlarge screenshot</span>
@@ -231,15 +192,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
                       </div>
 
                       {/* Screenshot Description Box */}
-                      <div className={`p-4 sm:p-5 text-xs sm:text-sm leading-relaxed ${
-                        isDark ? 'text-neutral-300 bg-neutral-900/30' : 'text-neutral-700 bg-neutral-50/70'
-                      }`}>
+                      <div className="p-4 sm:p-5 text-xs sm:text-sm leading-relaxed text-neutral-300 bg-[#0e1017]">
                         <div className="flex items-start gap-2.5">
-                          <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 flex-shrink-0" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0" />
                           <div>
-                            <span className={`font-mono text-xs font-bold uppercase mr-2 tracking-wider ${
-                              isDark ? 'text-amber-400' : 'text-amber-800'
-                            }`}>
+                            <span className="font-mono text-xs font-bold uppercase mr-2 tracking-wider text-amber-400">
                               Interface Architecture & Features:
                             </span>
                             <span className="leading-relaxed">{s.caption}</span>
@@ -252,7 +209,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
               </div>
             ) : project.id !== 'cosmo3d' && (
               /* Fallback Single Image */
-              <div className="relative w-full h-56 sm:h-72 rounded-2xl overflow-hidden border border-neutral-800">
+              <div className="relative w-full h-56 sm:h-72 rounded-2xl overflow-hidden border border-[#1e222d]">
                 <img
                   src={project.previewImage}
                   alt={project.title}
@@ -274,24 +231,24 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
 
             {/* Quick Metadata Matrix */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              <div className={`p-4 rounded-xl border ${isDark ? 'bg-neutral-950/40 border-neutral-800' : 'bg-neutral-50 border-neutral-200'}`}>
-                <p className={`text-xs font-mono uppercase ${isDark ? 'text-neutral-400' : 'text-neutral-600 font-semibold'}`}>
+              <div className="p-4 rounded-xl border border-[#1e222d] bg-[#0a0c10]">
+                <p className="text-xs font-mono uppercase text-neutral-400 font-semibold">
                   Context / Client
                 </p>
-                <p className={`text-sm font-semibold mt-1 ${isDark ? 'text-neutral-200' : 'text-neutral-900'}`}>
+                <p className="text-sm font-semibold mt-1 text-neutral-200">
                   {project.caseStudy.clientOrContext}
                 </p>
               </div>
-              <div className={`p-4 rounded-xl border ${isDark ? 'bg-neutral-950/40 border-neutral-800' : 'bg-neutral-50 border-neutral-200'}`}>
-                <p className={`text-xs font-mono uppercase ${isDark ? 'text-neutral-400' : 'text-neutral-600 font-semibold'}`}>
+              <div className="p-4 rounded-xl border border-[#1e222d] bg-[#0a0c10]">
+                <p className="text-xs font-mono uppercase text-neutral-400 font-semibold">
                   Role
                 </p>
-                <p className={`text-sm font-semibold mt-1 ${isDark ? 'text-neutral-200' : 'text-neutral-900'}`}>
+                <p className="text-sm font-semibold mt-1 text-neutral-200">
                   {project.caseStudy.role}
                 </p>
               </div>
-              <div className={`p-4 rounded-xl border ${isDark ? 'bg-neutral-950/40 border-neutral-800' : 'bg-neutral-50 border-neutral-200'} sm:col-span-2 lg:col-span-1`}>
-                <p className={`text-xs font-mono uppercase ${isDark ? 'text-neutral-400' : 'text-neutral-600 font-semibold'}`}>
+              <div className="p-4 rounded-xl border border-[#1e222d] bg-[#0a0c10] sm:col-span-2 lg:col-span-1">
+                <p className="text-xs font-mono uppercase text-neutral-400 font-semibold">
                   Live Deployed Endpoint
                 </p>
                 {project.liveUrl ? (
@@ -299,13 +256,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-sm font-mono font-semibold text-amber-600 dark:text-amber-500 hover:underline flex items-center gap-1 mt-1 truncate"
+                    className="text-sm font-mono font-semibold text-amber-400 hover:underline flex items-center gap-1 mt-1 truncate"
                   >
                     <span>{project.liveUrl.replace('https://', '')}</span>
                     <ExternalLink className="w-3 h-3 flex-shrink-0" />
                   </a>
                 ) : (
-                  <p className={`text-sm font-mono mt-1 ${isDark ? 'text-neutral-400' : 'text-neutral-600 font-medium'}`}>
+                  <p className="text-sm font-mono mt-1 text-neutral-400 font-medium">
                     Embedded In-Page Suite
                   </p>
                 )}
@@ -314,22 +271,22 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
 
             {/* Problem & Solution Split */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className={`p-5 rounded-xl border ${isDark ? 'bg-neutral-950/40 border-neutral-800' : 'bg-neutral-50 border-neutral-200'}`}>
-                <h4 className="font-display font-bold text-sm tracking-tight text-red-500 dark:text-red-400 flex items-center gap-2 mb-2">
+              <div className="p-5 rounded-xl border border-[#1e222d] bg-[#0a0c10]">
+                <h4 className="font-display font-bold text-sm tracking-tight text-red-400 flex items-center gap-2 mb-2">
                   <ShieldAlert className="w-4 h-4" />
                   <span>The Problem & Core Challenge</span>
                 </h4>
-                <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? 'text-neutral-400' : 'text-neutral-700'}`}>
+                <p className="text-xs sm:text-sm leading-relaxed text-neutral-400">
                   {project.caseStudy.problem}
                 </p>
               </div>
 
-              <div className={`p-5 rounded-xl border ${isDark ? 'bg-neutral-950/40 border-neutral-800' : 'bg-neutral-50 border-neutral-200'}`}>
-                <h4 className="font-display font-bold text-sm tracking-tight text-emerald-600 dark:text-emerald-400 flex items-center gap-2 mb-2">
+              <div className="p-5 rounded-xl border border-[#1e222d] bg-[#0a0c10]">
+                <h4 className="font-display font-bold text-sm tracking-tight text-emerald-400 flex items-center gap-2 mb-2">
                   <CheckCircle2 className="w-4 h-4" />
                   <span>The Engineering & UX Solution</span>
                 </h4>
-                <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? 'text-neutral-400' : 'text-neutral-700'}`}>
+                <p className="text-xs sm:text-sm leading-relaxed text-neutral-400">
                   {project.caseStudy.solution}
                 </p>
               </div>
@@ -337,7 +294,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
 
             {/* Key Functional Modules */}
             <div className="space-y-3">
-              <h4 className="text-xs font-mono font-bold tracking-wider uppercase text-amber-600 dark:text-amber-500 flex items-center gap-2">
+              <h4 className="text-xs font-mono font-bold tracking-wider uppercase text-amber-400 flex items-center gap-2">
                 <Layers className="w-3.5 h-3.5" />
                 <span>Key Deliverables & Implemented Features</span>
               </h4>
@@ -345,11 +302,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
                 {project.caseStudy.keyFeatures.map((feat, idx) => (
                   <div
                     key={idx}
-                    className={`p-3.5 rounded-lg border text-xs leading-relaxed ${
-                      isDark ? 'bg-neutral-950/50 border-neutral-800 text-neutral-300' : 'bg-neutral-50 border-neutral-200 text-neutral-800'
-                    }`}
+                    className="p-3.5 rounded-lg border border-[#1e222d] bg-[#0a0c10] text-xs leading-relaxed text-neutral-300"
                   >
-                    <span className="text-amber-600 dark:text-amber-500 font-mono font-bold mr-1.5">0{idx + 1}.</span>
+                    <span className="text-amber-400 font-mono font-bold mr-1.5">0{idx + 1}.</span>
                     <span>{feat}</span>
                   </div>
                 ))}
@@ -358,14 +313,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
 
             {/* Technical Architecture & Stack */}
             <div className="space-y-3">
-              <h4 className="text-xs font-mono font-bold tracking-wider uppercase text-amber-600 dark:text-amber-500 flex items-center gap-2">
+              <h4 className="text-xs font-mono font-bold tracking-wider uppercase text-amber-400 flex items-center gap-2">
                 <Cpu className="w-3.5 h-3.5" />
                 <span>Technical Architecture & Engineering Decisions</span>
               </h4>
-              <div className={`p-4 rounded-xl border space-y-2.5 ${isDark ? 'bg-neutral-950/30 border-neutral-800' : 'bg-neutral-50 border-neutral-200'}`}>
+              <div className="p-4 rounded-xl border border-[#1e222d] bg-[#0a0c10] space-y-2.5">
                 {project.caseStudy.technicalArchitecture.map((arch, idx) => (
-                  <div key={idx} className={`flex items-start gap-2.5 text-xs ${isDark ? 'text-neutral-300' : 'text-neutral-800'}`}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 flex-shrink-0" />
+                  <div key={idx} className="flex items-start gap-2.5 text-xs text-neutral-300">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 flex-shrink-0" />
                     <span className="leading-relaxed">{arch}</span>
                   </div>
                 ))}
@@ -374,18 +329,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
 
             {/* Technologies Used Pills */}
             <div className="space-y-2">
-              <p className={`text-xs font-mono uppercase ${isDark ? 'text-neutral-400' : 'text-neutral-600 font-semibold'}`}>
+              <p className="text-xs font-mono uppercase text-neutral-400 font-semibold">
                 Technologies Deployed
               </p>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((t) => (
                   <span
                     key={t}
-                    className={`px-3 py-1 text-xs font-mono rounded-lg border ${
-                      isDark
-                        ? 'border-neutral-800 bg-neutral-900/80 text-amber-400'
-                        : 'border-amber-200 bg-amber-50 text-amber-900 font-semibold'
-                    }`}
+                    className="px-3 py-1 text-xs font-mono rounded-lg border border-[#1e222d] bg-[#11141c] text-amber-400"
                   >
                     {t}
                   </span>
@@ -394,11 +345,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, is
             </div>
 
             {/* Outcome */}
-            <div className={`p-4 rounded-xl border ${isDark ? 'bg-amber-400/5 border-amber-400/20' : 'bg-amber-50 border-amber-200'}`}>
-              <p className="text-xs font-mono text-amber-700 dark:text-amber-500 uppercase font-semibold">
+            <div className="p-4 rounded-xl border border-amber-400/20 bg-amber-400/5">
+              <p className="text-xs font-mono text-amber-400 uppercase font-semibold">
                 Project Impact & Outcome
               </p>
-              <p className={`text-xs sm:text-sm mt-1 leading-relaxed ${isDark ? 'text-neutral-300' : 'text-neutral-800'}`}>
+              <p className="text-xs sm:text-sm mt-1 leading-relaxed text-neutral-300">
                 {project.caseStudy.outcome}
               </p>
             </div>
