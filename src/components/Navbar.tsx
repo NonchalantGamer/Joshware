@@ -261,7 +261,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
 
                   <div className="flex items-center justify-center gap-2 pt-2 text-xs font-mono text-neutral-400">
                     <a
-                      href="https://github.com"
+                      href="https://github.com/NonchalantGamer"
                       target="_blank"
                       rel="noreferrer"
                       aria-label="GitHub"
@@ -270,7 +270,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
                       <GithubIcon className="w-4 h-4" />
                     </a>
                     <a
-                      href="https://linkedin.com"
+                      href="https://www.linkedin.com/in/joshua-enyinnaya"
                       target="_blank"
                       rel="noreferrer"
                       aria-label="LinkedIn"

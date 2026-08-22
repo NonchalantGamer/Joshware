@@ -105,7 +105,7 @@ export const Footer: React.FC = () => {
 
             <div className="flex flex-wrap items-center gap-2.5">
               <motion.a
-                href="https://github.com"
+                href="https://github.com/NonchalantGamer"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -116,7 +116,7 @@ export const Footer: React.FC = () => {
                 <GithubIcon className="w-4 h-4" />
               </motion.a>
               <motion.a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/joshua-enyinnaya"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"

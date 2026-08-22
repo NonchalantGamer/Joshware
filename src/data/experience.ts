@@ -3,37 +3,38 @@ import { ExperienceItem } from '../types';
 export const experiences: ExperienceItem[] = [
   {
     id: 'eagle-excel-ventures-exp',
-    role: 'Web Developer / Software Developer',
+    role: 'Full-Stack / Web Developer',
     company: 'Eagle Excel Ventures',
     period: 'Project & Professional Engagement',
     location: 'Lagos, Nigeria',
     type: 'Full-Stack Development',
     overview:
-      'Engineered a complete end-to-end e-commerce, content management (CMS), and customer relationship (CRM) web platform for a major commercial wholesale and importation company.',
+      'Built an end-to-end wholesale and importation e-commerce web platform connecting commercial buyers with product catalogs, inventory management, and bulk ordering workflows.',
     achievements: [
-      'Architected a full-featured customer storefront allowing bulk buyers to explore catalogs, review specifications, and place wholesale orders.',
-      'Developed an administrative back-office system enabling real-time product inventory updates, category classification, and transaction review.',
-      'Integrated customer inquiry management to automate direct customer follow-ups and order routing.',
-      'Engineered a high-performance responsive interface ensuring fast load times across low-bandwidth mobile networks and desktop workstations.',
-      'Constructed modular frontend components with modern TypeScript and reactive state patterns for ongoing scalability.'
+      'Built an end-to-end wholesale and importation e-commerce platform with a customer-facing storefront and administrative control suite.',
+      'Developed dynamic product catalogs with detailed product specifications and bulk ordering workflows tailored for wholesale buyers.',
+      'Implemented administrative functionality for real-time inventory management, category categorization, and product publishing.',
+      'Added transaction and order review functionality alongside customer inquiry management to streamline business-to-buyer communication.',
+      'Built responsive, mobile-first interfaces using modular React architecture, TypeScript, and reusable UI components.'
     ],
-    skills: ['E-Commerce Systems', 'React', 'TypeScript', 'CMS & CRM Architecture', 'Tailwind CSS', 'API Integration', 'Responsive UI']
+    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase', 'Node.js', 'REST APIs', 'E-Commerce']
   },
   {
     id: 'edgebase-technology-exp',
     role: 'Cloud Networking & Services Intern',
     company: 'Edgebase Technology Nigeria',
-    period: 'Professional Internship',
+    period: 'Professional Internship (SIWES)',
     location: 'Nigeria',
     type: 'Cloud & Systems Internship',
     overview:
       'Gained practical industry exposure to cloud infrastructure, enterprise networking topology, systems monitoring, and professional software engineering workflows.',
     achievements: [
-      'Worked directly within enterprise cloud environments, gaining hands-on exposure to cloud networking configurations and server routing.',
-      'Participated in system reliability analysis, infrastructure monitoring, and cloud services maintenance routines.',
-      'Collaborated within structured engineering workflows, adhering to version control best practices and system security standards.',
-      'Applied cloud networking and service architecture concepts directly to improve backend connectivity and latency in personal full-stack projects.'
+      'Gained hands-on exposure to cloud infrastructure, cloud networking concepts, and server routing configurations.',
+      'Participated in systems monitoring, network topology reviews, and cloud services maintenance routines.',
+      'Collaborated within professional software engineering workflows adhering to Git version control, security practices, and code reviews.',
+      'Applied cloud networking and service architecture principles to optimize backend connectivity and data handling in full-stack web applications.'
     ],
-    skills: ['Cloud Networking', 'Cloud Services', 'Systems Infrastructure', 'Network Topology', 'Engineering Workflows']
+    skills: ['Cloud Infrastructure', 'Cloud Networking', 'Systems Monitoring', 'Network Topology', 'Git Workflows', 'Security Practices']
   }
 ];
+

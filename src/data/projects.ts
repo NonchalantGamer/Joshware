@@ -74,60 +74,60 @@ export const projects: Project[] = [
     title: 'Joshware',
     category: 'Full-Stack Web',
     badge: 'Flagship Platform',
-    tagline: 'Personal Creative Engineering & Software Solutions Platform',
+    tagline: 'Personal Software Engineering & Web Development Ecosystem',
     description:
-      'The flagship Joshware digital ecosystem and software solutions hub designed to showcase high-performance full-stack web applications, digital product delivery, and modern client checkout solutions.',
-    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Stripe / Paystack', 'REST APIs'],
-    liveUrl: 'https://josh-stream-web.vercel.app/#home',
+      'Personal software and web development ecosystem and portfolio platform showcasing full-stack development capabilities, projects, services, and modern interactive web experiences.',
+    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'REST APIs'],
+    liveUrl: 'https://joshware.vercel.app/',
     previewImage: 'https://res.cloudinary.com/doujptiz/image/upload/v1787235973/7ae447ee-edab-420d-9499-5edcee61c7d1.png',
     screenshots: [
       {
         title: 'Homepage & Platform Hero',
-        caption: 'Joshware flagship digital interface featuring clean brand typography, interactive portfolio sections, service tiers, and smooth responsive navigation.',
+        caption: 'Joshware flagship digital interface featuring clean typography, interactive project case studies, and responsive navigation.',
         url: 'https://res.cloudinary.com/doujptiz/image/upload/v1787235973/7ae447ee-edab-420d-9499-5edcee61c7d1.png',
         tag: 'Homepage'
       },
       {
-        title: 'Payment & Checkout Interface',
-        caption: 'Integrated payment processing and order confirmation portal engineered for secure client transactions, invoice clearing, and automated service checkout.',
+        title: 'Project Case Studies & Modal Interface',
+        caption: 'Detailed project breakdown system showcasing technical architecture, problem-solving workflows, and live links.',
         url: 'https://res.cloudinary.com/doujptiz/image/upload/v1787236298/b64ac412-dfeb-4104-9785-b07b7a856e5f.png',
-        tag: 'Payment'
+        tag: 'Case Studies'
       }
     ],
     highlights: [
-      'High-performance full-stack web architecture with responsive design systems',
-      'End-to-end payment gateway and digital invoice clearing checkout flows',
-      'Custom micro-interactions, dark/light theme engine, and modal workflows',
-      'Optimized sub-second load times and modular component architecture'
+      'Full-stack web architecture with responsive design systems',
+      'Interactive project modal breakdowns and dynamic category filtering',
+      'Integrated contact communication channels with instant copy helpers',
+      'Optimized load times and modular component architecture'
     ],
     caseStudy: {
       overview:
-        'Joshware serves as the primary software engineering and design identity platform, integrating client onboarding, service offerings, and streamlined checkout workflows in a unified ecosystem.',
-      clientOrContext: 'Joshware Digital Engineering',
-      role: 'Lead Full-Stack Developer & UI/UX Designer',
+        'Joshware serves as the primary software engineering ecosystem and portfolio platform, showcasing full-stack capabilities, case studies, and modern web experiences.',
+      clientOrContext: 'Joshware Software Solutions',
+      role: 'Full-Stack Developer & UI/UX Designer',
       problem:
-        'Clients needed a friction-free method to inspect past engineering achievements, explore service packages, and initiate project retainers with seamless online payment handling.',
+        'Needed a modern, high-performance platform to present full-stack engineering projects, demonstrate real-time 3D capabilities, and provide direct communication channels for opportunities.',
       solution:
-        'Engineered an ultra-fast, responsive web platform featuring structured service tiers, dynamic project case studies, and a dedicated frictionless payment & checkout gateway.',
+        'Engineered an ultra-fast, responsive web platform featuring structured project filtering, interactive case study modals, tactile micro-interactions, and accessible contact methods.',
       keyFeatures: [
-        'Homepage & Portfolio: Dynamic interactive project previews, technical skill matrix, and career timeline.',
-        'Payment & Checkout Portal: Secure multi-currency transaction interface with instantaneous status notifications.',
-        'Theme Switching Engine: Bespoke dark/light system maintaining strict contrast ratios across all components.',
+        'Homepage & Portfolio: Dynamic interactive project previews, technical skill matrix, and professional experience timeline.',
+        'Interactive Modals: Detailed case studies with full screenshot galleries and live project links.',
+        'Theme System: High-contrast aesthetic maintaining accessibility across all components.',
         'Adaptive Layouts: Optimized viewport scaling across desktop, tablet, and mobile browsers.'
       ],
       technicalArchitecture: [
-        'Frontend: Modern React with TypeScript and strict type assertions.',
+        'Frontend: Modern React with TypeScript and strict type safety.',
         'Styling: Tailwind CSS with high-contrast accessibility standards.',
-        'Payments: Integration-ready payment handling architecture for international checkout.',
+        'State Management: Lightweight React hooks and tactile feedback context.',
         'Deployment: Hosted on global edge networks with dynamic asset caching.'
       ],
       designConsiderations: [
-        'Minimalist Luxury: Balanced typography pairing with amber accent highlights.',
-        'Tactile Feedback: Fluid micro-interactions and spring animations for actionable elements.',
-        'High Accessibility: WCAG AA color contrast across both dark and light modes.'
+        'Clean Hierarchy: Balanced typography pairing with amber accent highlights.',
+        'Tactile Micro-Interactions: Fluid transitions and subtle feedback for interactive controls.',
+        'High Accessibility: WCAG AA color contrast across all sections.'
       ],
       outcome:
-        'Successfully published and operational, serving as the core business portal for Joshware client acquisition and payment processing.'
+        'Successfully published and operational at joshware.vercel.app, presenting verified engineering work and technical skills.'
     }
   },
   {

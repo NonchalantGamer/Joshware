@@ -19,14 +19,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
   const socials = [
     {
       name: 'GitHub',
-      href: 'https://github.com',
+      href: 'https://github.com/NonchalantGamer',
       icon: <GithubIcon className="w-4 h-4" />,
       id: 'hero-social-github',
       color: 'neutral' as const
     },
     {
       name: 'LinkedIn',
-      href: 'https://linkedin.com',
+      href: 'https://www.linkedin.com/in/joshua-enyinnaya',
       icon: <LinkedinIcon className="w-4 h-4" />,
       id: 'hero-social-linkedin',
       color: 'blue' as const
