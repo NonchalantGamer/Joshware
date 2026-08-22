@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import { services } from '../data/services';
 import { Service } from '../types';
-import { ScrollReveal } from './ui/ScrollReveal';
+import { ScrollReveal, TextReveal } from './ui/ScrollReveal';
 
 // 100% Solid, Opaque Color Configurations for each Service Card (No translucent overlays)
 interface ThemeConfig {
@@ -205,15 +205,15 @@ const StackingCard: React.FC<StackingCardProps> = ({
     }
   };
 
-  // Responsive sticky viewport top offset - tight margin for card stacking on mobile and desktop
-  const stickyTop = `calc(var(--sticky-base, 76px) + ${index * 12}px)`;
+// Responsive sticky viewport top offset - tight margin for card stacking on mobile and desktop
+  const stickyTop = `calc(60px + ${index * 8}px)`;
 
   return (
     <div
       id={`service-card-slot-${service.id}`}
-      className="sticky w-full h-auto flex items-center justify-center pt-1 sm:pt-2 pb-4 sm:pb-8 lg:pb-10"
+      className="sticky w-full h-auto flex items-center justify-center pt-1 pb-3 sm:pb-6 lg:pb-8"
       style={{
-        top: `calc(72px + ${index * 10}px)`,
+        top: `calc(60px + ${index * 8}px)`,
         zIndex: 10 + index
       }}
     >
@@ -222,74 +222,78 @@ const StackingCard: React.FC<StackingCardProps> = ({
           scale,
           transformOrigin: 'top center'
         }}
-        className={`w-full rounded-2xl sm:rounded-3xl border ${theme.border} ${theme.cardBg} ${theme.hoverBorder} transition-colors duration-200 overflow-hidden shadow-2xl`}
+        className={`w-full rounded-xl sm:rounded-3xl border ${theme.border} ${theme.cardBg} ${theme.hoverBorder} transition-colors duration-200 overflow-hidden shadow-xl sm:shadow-2xl`}
       >
         <div
-          className={`flex flex-col ${
+          className={`flex flex-col-reverse ${
             isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
-          } gap-5 sm:gap-8 lg:gap-12 items-center p-4 sm:p-7 lg:p-10`}
+          } gap-3 sm:gap-6 lg:gap-10 items-stretch p-3.5 sm:p-6 lg:p-9`}
         >
           {/* Text & Deliverables Column */}
-          <div className="w-full lg:w-1/2 space-y-4 sm:space-y-5">
-            {/* Header Metadata Pill */}
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span
-                className={`px-3 py-1 text-xs font-mono font-bold rounded-lg ${theme.accentBg} ${theme.badgeText} border ${theme.badgeBorder} flex items-center gap-1.5`}
-              >
-                <span className={`w-1.5 h-1.5 rounded-full ${theme.dotColor}`} />
-                <span>Service {service.number}</span>
-              </span>
-              {service.tag && (
+          <div className="w-full lg:w-7/12 flex flex-col justify-between space-y-2.5 sm:space-y-4">
+            <div className="space-y-2 sm:space-y-3">
+              {/* Header Metadata Pill */}
+              <div className="flex flex-wrap items-center gap-2">
                 <span
-                  className={`px-2.5 py-1 text-xs font-mono font-medium rounded-lg ${theme.pillBg} text-neutral-200 border ${theme.pillBorder}`}
+                  className={`px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-mono font-bold rounded-md sm:rounded-lg ${theme.accentBg} ${theme.badgeText} border ${theme.badgeBorder} flex items-center gap-1.5`}
                 >
-                  {service.tag}
+                  <span className={`w-1.5 h-1.5 rounded-full ${theme.dotColor}`} />
+                  <span>Service {service.number}</span>
                 </span>
-              )}
-            </div>
-
-            {/* Title with Themed Icon */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <div className={`p-2.5 rounded-xl ${theme.deliverableBg} border ${theme.border} flex-shrink-0`}>
-                  {getServiceIcon(service.iconName)}
-                </div>
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-extrabold text-white tracking-tight leading-snug">
-                  {service.title}
-                </h3>
-              </div>
-              <p className="text-xs sm:text-sm lg:text-base leading-relaxed text-neutral-300 font-normal">
-                {service.shortDescription}
-              </p>
-            </div>
-
-            {/* Key Deliverables & Capabilities */}
-            <div className="space-y-2.5 pt-1">
-              <div className={`flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider ${theme.accent}`}>
-                <Layers className="w-3.5 h-3.5" />
-                <span>Key Capabilities & Deliverables</span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {service.deliverables.slice(0, 4).map((deliverable, dIdx) => (
-                  <div
-                    key={dIdx}
-                    className={`flex items-start gap-2 p-2.5 rounded-xl border ${theme.deliverableBorder} ${theme.deliverableBg} text-xs leading-tight text-neutral-200`}
+                {service.tag && (
+                  <span
+                    className={`px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-mono font-medium rounded-md sm:rounded-lg ${theme.pillBg} text-neutral-200 border ${theme.pillBorder}`}
                   >
-                    <CheckCircle2 className={`w-3.5 h-3.5 ${theme.deliverableIcon} mt-0.5 flex-shrink-0`} />
-                    <span className="truncate">{deliverable}</span>
+                    {service.tag}
+                  </span>
+                )}
+              </div>
+
+              {/* Title with Themed Icon */}
+              <div className="space-y-1 sm:space-y-2">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className={`p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl ${theme.deliverableBg} border ${theme.border} flex-shrink-0`}>
+                    {getServiceIcon(service.iconName)}
                   </div>
-                ))}
+                  <h3 className="text-base sm:text-xl lg:text-2xl font-display font-extrabold text-white tracking-tight leading-snug">
+                    {service.title}
+                  </h3>
+                </div>
+                <p className="text-[11px] sm:text-xs lg:text-sm leading-relaxed text-neutral-300 font-normal line-clamp-2 sm:line-clamp-none">
+                  {service.shortDescription}
+                </p>
+              </div>
+
+              {/* Key Deliverables & Capabilities - Compact 2 items on mobile, 4 on larger */}
+              <div className="space-y-1.5 sm:space-y-2 pt-0.5 sm:pt-1">
+                <div className={`flex items-center gap-1 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider ${theme.accent}`}>
+                  <Layers className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                  <span>Key Deliverables</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
+                  {service.deliverables.slice(0, 4).map((deliverable, dIdx) => (
+                    <div
+                      key={dIdx}
+                      className={`flex items-start gap-1.5 p-1.5 sm:p-2 rounded-lg sm:rounded-xl border ${theme.deliverableBorder} ${theme.deliverableBg} text-[10px] sm:text-xs leading-tight text-neutral-200 ${
+                        dIdx >= 2 ? 'hidden sm:flex' : 'flex'
+                      }`}
+                    >
+                      <CheckCircle2 className={`w-3 h-3 ${theme.deliverableIcon} mt-0.5 flex-shrink-0`} />
+                      <span className="truncate">{deliverable}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Tech Stack Pills & CTA Action */}
-            <div className={`pt-3 border-t ${theme.border} flex flex-wrap items-center justify-between gap-3`}>
-              <div className="flex flex-wrap items-center gap-1.5">
-                <Code2 className="w-3.5 h-3.5 text-neutral-500 mr-1" />
-                {service.techUsed.slice(0, 4).map((tech) => (
+            <div className={`pt-2 sm:pt-3 border-t ${theme.border} flex flex-wrap items-center justify-between gap-2`}>
+              <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
+                <Code2 className="w-3 h-3 text-neutral-500 mr-0.5 hidden xs:inline" />
+                {service.techUsed.slice(0, 3).map((tech) => (
                   <span
                     key={tech}
-                    className={`px-2 py-0.5 text-[10px] sm:text-[11px] font-mono rounded-md border ${theme.pillBorder} ${theme.pillBg} text-neutral-200`}
+                    className={`px-1.5 py-0.5 text-[9px] sm:text-[10px] font-mono rounded border ${theme.pillBorder} ${theme.pillBg} text-neutral-200`}
                   >
                     {tech}
                   </span>
@@ -301,18 +305,18 @@ const StackingCard: React.FC<StackingCardProps> = ({
                 onClick={onContactClick}
                 whileHover={{ scale: 1.04, x: 2 }}
                 whileTap={{ scale: 0.97 }}
-                className={`inline-flex items-center gap-1.5 min-h-[42px] px-4 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider border ${theme.ctaBorder} ${theme.ctaBg} ${theme.ctaText} ${theme.ctaHoverBg} transition-all cursor-pointer shadow-sm touch-manipulation`}
+                className={`inline-flex items-center gap-1 min-h-[34px] sm:min-h-[38px] px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider border ${theme.ctaBorder} ${theme.ctaBg} ${theme.ctaText} ${theme.ctaHoverBg} transition-all cursor-pointer shadow-sm touch-manipulation`}
               >
-                <span>Get Started</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <span>Start</span>
+                <ArrowUpRight className="w-3 h-3" />
               </motion.button>
             </div>
           </div>
 
-          {/* Visual Showcase Image Column (100% solid container background) */}
-          <div className="w-full lg:w-1/2">
-            <div className={`relative rounded-2xl overflow-hidden border ${theme.border} bg-[#06080d]`}>
-              <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#06080d]">
+          {/* Visual Showcase Image Column - Placed at Top on Mobile for Guaranteed Visibility */}
+          <div className="w-full lg:w-5/12 flex-shrink-0">
+            <div className={`relative rounded-lg sm:rounded-2xl overflow-hidden border ${theme.border} bg-[#06080d]`}>
+              <div className="relative aspect-[2.4/1] xs:aspect-[2.2/1] sm:aspect-[16/10] lg:aspect-[4/3] w-full max-h-[140px] xs:max-h-[170px] sm:max-h-none overflow-hidden bg-[#06080d]">
                 <img
                   src={service.image}
                   alt={service.title}
@@ -321,12 +325,12 @@ const StackingCard: React.FC<StackingCardProps> = ({
                 />
 
                 {/* Solid Vignette Contrast Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#06080d]/90 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#06080d]/80 via-transparent to-transparent pointer-events-none" />
 
                 {/* Floating Status Pill over image */}
-                <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-end pointer-events-none">
+                <div className="absolute bottom-2 left-2 right-2 sm:bottom-3 sm:left-3 sm:right-3 flex items-center justify-end pointer-events-none">
                   <span
-                    className={`text-[10px] sm:text-[11px] font-mono ${theme.accent} font-bold px-2.5 sm:px-3 py-1 rounded-lg bg-[#0a0c10] border ${theme.badgeBorder}`}
+                    className={`text-[9px] sm:text-[10px] font-mono ${theme.accent} font-bold px-2 py-0.5 rounded sm:rounded-md bg-[#0a0c10]/90 backdrop-blur-xs border ${theme.badgeBorder}`}
                   >
                     {service.number} // 05
                   </span>
@@ -358,35 +362,43 @@ export const Services: React.FC = () => {
     <section
       id="services"
       ref={containerRef}
-      className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-[#0a0c10] text-neutral-100 transition-colors duration-300"
+      className="relative py-10 sm:py-20 lg:py-28 px-3.5 sm:px-6 lg:px-8 bg-[#0a0c10] text-neutral-100 transition-colors duration-300"
     >
-      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
+      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12 lg:space-y-16">
         {/* Section Header */}
-        <ScrollReveal direction="up">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-neutral-800 bg-neutral-900 text-amber-400 text-xs font-mono mb-3 font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                <span>Services & Capabilities</span>
-              </div>
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight text-white">
-                End-to-End Digital <br className="hidden sm:inline" />
-                Product Development.
-              </h2>
-            </div>
-
-            <p className="text-sm sm:text-base max-w-lg leading-relaxed text-neutral-400">
-              From responsive client-facing web applications to resilient database architectures, I engineer high-performing digital systems tailored to tangible business requirements.
-            </p>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-6">
+          <div>
+            <TextReveal as="div" delay={0} distance={14} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-neutral-800 bg-neutral-900 text-amber-400 text-[11px] sm:text-xs font-mono mb-2 sm:mb-3 font-semibold">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+              <span>Services & Capabilities</span>
+            </TextReveal>
+            <TextReveal
+              as="h2"
+              delay={0.08}
+              distance={18}
+              className="text-xl sm:text-3xl lg:text-5xl font-display font-extrabold tracking-tight text-white leading-tight"
+            >
+              End-to-End Digital <br className="hidden sm:inline" />
+              Product Development.
+            </TextReveal>
           </div>
-        </ScrollReveal>
+
+          <TextReveal
+            as="p"
+            delay={0.15}
+            distance={16}
+            className="text-xs sm:text-base max-w-lg leading-relaxed text-neutral-400"
+          >
+            From responsive client-facing web applications to resilient database architectures, I engineer high-performing digital systems tailored to tangible business requirements.
+          </TextReveal>
+        </div>
 
         {/* 
           Scroll-driven Stacking Deck:
           Container height provides natural scroll duration for the 5 cards to glide in,
           stack/shrink over each other sequentially, and then scroll up as a unified stack.
         */}
-        <div className="relative flex flex-col gap-12 sm:gap-20 lg:gap-28 pb-16">
+        <div className="relative flex flex-col gap-8 sm:gap-16 lg:gap-24 pb-8 sm:pb-16">
           {services.map((service, index) => (
             <StackingCard
               key={service.id}

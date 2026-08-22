@@ -43,33 +43,33 @@ export const Footer: React.FC = () => {
   return (
     <footer
       id="main-portfolio-footer"
-      className="border-t border-[#1a1d26] py-14 px-4 sm:px-6 lg:px-8 bg-[#090b0f] text-neutral-400 transition-colors duration-300 overflow-hidden"
+      className="border-t border-[#1a1d26] py-8 sm:py-14 px-3.5 sm:px-6 lg:px-8 bg-[#090b0f] text-neutral-400 transition-colors duration-300 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto space-y-12">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-12">
         {/* Top Info & Brand Bar */}
         <ScrollReveal direction="up">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pb-10 border-b border-neutral-800/80">
-            <div className="flex items-center gap-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-8 pb-6 sm:pb-10 border-b border-neutral-800/80">
+            <div className="flex items-center gap-3 sm:gap-4">
               <img
                 src={darkLogo}
                 alt="Joshware Logo"
-                className="h-10 w-auto object-contain flex-shrink-0"
+                className="h-8 sm:h-10 w-auto object-contain flex-shrink-0"
                 referrerPolicy="no-referrer"
               />
               <div>
-                <h3 className="text-lg font-display font-bold text-white tracking-tight">
+                <h3 className="text-base sm:text-lg font-display font-bold text-white tracking-tight">
                   Joshua Egesi Enyinnaya
                 </h3>
-                <p className="text-xs font-mono text-amber-400">
+                <p className="text-[11px] sm:text-xs font-mono text-amber-400">
                   Full-Stack Developer & UI/UX Designer • Joshware
                 </p>
               </div>
             </div>
 
             {/* Lagos Time indicator & Availability */}
-            <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-neutral-800 bg-neutral-900/60 min-h-[40px]">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-mono">
+              <div className="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border border-neutral-800 bg-neutral-900/60 min-h-[36px] sm:min-h-[40px] text-[11px] sm:text-xs">
+                <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-neutral-300">Lagos, NG: {lagosTime || '12:00 PM'} (WAT)</span>
               </div>
 
@@ -79,10 +79,10 @@ export const Footer: React.FC = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Scroll back to top"
-                className="min-h-[40px] px-3.5 py-2 rounded-lg border border-neutral-800 bg-neutral-900/60 text-neutral-300 hover:text-amber-400 hover:border-neutral-700 transition-colors flex items-center gap-1.5 cursor-pointer touch-manipulation"
+                className="min-h-[36px] sm:min-h-[40px] px-3 py-1.5 sm:py-2 rounded-lg border border-neutral-800 bg-neutral-900/60 text-neutral-300 hover:text-amber-400 hover:border-neutral-700 transition-colors flex items-center gap-1.5 cursor-pointer touch-manipulation text-[11px] sm:text-xs"
               >
-                <ArrowUp className="w-4 h-4" />
-                <span className="text-xs">Top</span>
+                <ArrowUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>Top</span>
               </motion.button>
             </div>
           </div>

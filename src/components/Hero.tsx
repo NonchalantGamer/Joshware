@@ -64,7 +64,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] sm:min-h-screen flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center pt-20 pb-10 sm:pt-28 sm:pb-16 px-3.5 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* Background Image with 100% Opacity and Cinematic Vignette */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -87,11 +87,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 px-3.5 py-1.5 rounded-full border border-neutral-700/80 bg-neutral-900/80 backdrop-blur-md text-[11px] sm:text-xs font-mono mb-6 text-neutral-300 max-w-full"
+          className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-neutral-700/80 bg-neutral-900/80 backdrop-blur-md text-[10px] sm:text-xs font-mono mb-4 sm:mb-6 text-neutral-300 max-w-full"
         >
-          <span className="relative flex h-2 w-2 flex-shrink-0">
+          <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2 flex-shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-emerald-500" />
           </span>
           <span className="font-medium text-emerald-400">Available for projects & roles</span>
           <span className="text-neutral-500 hidden xs:inline">|</span>
@@ -103,14 +103,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="space-y-2.5 sm:space-y-3 mb-6"
+          className="space-y-1.5 sm:space-y-3 mb-4 sm:mb-6"
         >
-          <p className="text-xs sm:text-sm font-mono tracking-widest uppercase text-amber-400 font-semibold">
+          <p className="text-[11px] sm:text-sm font-mono tracking-widest uppercase text-amber-400 font-semibold">
             Joshua Egesi Enyinnaya — Joshware
           </p>
           <h1
             id="hero-main-title"
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight text-white leading-[1.12] sm:leading-[1.08] max-w-4xl px-2 sm:px-0"
+            className="text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight text-white leading-[1.15] sm:leading-[1.08] max-w-4xl px-1 sm:px-0"
           >
             Full-Stack Developer <br className="hidden sm:inline" />
             <span className="text-neutral-300 font-medium">&</span> UI/UX Designer
@@ -123,7 +123,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-sm sm:text-lg lg:text-xl text-neutral-300 max-w-2xl mx-auto leading-relaxed mb-8 font-light px-2 sm:px-0"
+          className="text-xs sm:text-base lg:text-lg text-neutral-300 max-w-2xl mx-auto leading-relaxed mb-5 sm:mb-8 font-light px-1 sm:px-0"
         >
           I design and build modern digital experiences, web applications, and scalable business systems that turn ideas into functional, production-ready products.
         </motion.p>
@@ -133,14 +133,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-8 sm:mb-10 px-2"
+          className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 mb-6 sm:mb-10 px-1"
         >
           {capabilityPills.map((pill) => (
             <motion.div
               key={pill.label}
               whileHover={{ scale: 1.05, y: -2 }}
               transition={{ duration: 0.2 }}
-              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-xl border border-neutral-800 bg-neutral-900/70 backdrop-blur-md text-[11px] sm:text-xs font-mono text-neutral-300 shadow-sm cursor-default hover:border-amber-400/40 hover:text-white transition-colors touch-manipulation"
+              className="inline-flex items-center gap-1 sm:gap-2 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl border border-neutral-800 bg-neutral-900/70 backdrop-blur-md text-[10px] sm:text-xs font-mono text-neutral-300 shadow-sm cursor-default hover:border-amber-400/40 hover:text-white transition-colors touch-manipulation"
             >
               <span className="text-amber-400 transition-transform group-hover:rotate-12">{pill.icon}</span>
               <span>{pill.label}</span>
@@ -154,7 +154,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3.5 mb-10 sm:mb-12 w-full max-w-md sm:max-w-none px-4 sm:px-0"
+          className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3.5 mb-6 sm:mb-12 w-full max-w-sm sm:max-w-none px-2 sm:px-0"
         >
           {/* Primary CTA */}
           <motion.button
@@ -163,7 +163,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
             onClick={() => scrollToSection('#contact')}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full sm:w-auto min-h-[48px] px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase border border-amber-300 bg-amber-400 text-neutral-950 hover:bg-amber-300 transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 shadow-lg shadow-amber-400/20 touch-manipulation"
+            className="w-full sm:w-auto min-h-[42px] sm:min-h-[48px] px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase border border-amber-300 bg-amber-400 text-neutral-950 hover:bg-amber-300 transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 shadow-lg shadow-amber-400/20 touch-manipulation"
           >
             <span>Hire Me!</span>
             <ArrowUpRight className="w-4 h-4" />
@@ -176,7 +176,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
             onClick={() => scrollToSection('#projects')}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full sm:w-auto min-h-[48px] px-6 py-3.5 rounded-full text-xs sm:text-sm font-medium tracking-wide border border-neutral-700 bg-neutral-900/80 text-white hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 touch-manipulation"
+            className="w-full sm:w-auto min-h-[42px] sm:min-h-[48px] px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-full text-xs sm:text-sm font-medium tracking-wide border border-neutral-700 bg-neutral-900/80 text-white hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 touch-manipulation"
           >
             <span>View Projects</span>
             <ArrowDown className="w-4 h-4 text-neutral-400" />
@@ -189,7 +189,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
             onClick={onOpenCv}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full sm:w-auto min-h-[48px] px-5 py-3.5 rounded-full text-xs sm:text-sm font-medium tracking-wide border border-neutral-800 bg-neutral-950/60 text-neutral-300 hover:text-white hover:bg-neutral-900 transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 touch-manipulation"
+            className="w-full sm:w-auto min-h-[42px] sm:min-h-[48px] px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-full text-xs sm:text-sm font-medium tracking-wide border border-neutral-800 bg-neutral-950/60 text-neutral-300 hover:text-white hover:bg-neutral-900 transition-all flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 touch-manipulation"
           >
             <FileText className="w-4 h-4 text-amber-400" />
             <span>Download CV</span>
