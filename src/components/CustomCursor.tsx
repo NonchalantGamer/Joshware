@@ -53,10 +53,10 @@ export const CustomCursor: React.FC = () => {
   if (isTouchDevice || !isVisible) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden transition-opacity duration-300">
+    <div className="pointer-events-none fixed inset-0 z-[999999] overflow-hidden select-none transition-opacity duration-300">
       {/* Central dot with high-visibility shadow and amber core */}
       <motion.div
-        className="fixed top-0 left-0 w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]"
+        className="pointer-events-none fixed top-0 left-0 w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)] z-[999999]"
         animate={{
           x: mousePosition.x - 5,
           y: mousePosition.y - 5,
@@ -67,7 +67,7 @@ export const CustomCursor: React.FC = () => {
 
       {/* Outer ring */}
       <motion.div
-        className={`fixed top-0 left-0 rounded-full border transition-colors ${
+        className={`pointer-events-none fixed top-0 left-0 rounded-full border transition-colors z-[999999] ${
           isPointer
             ? 'border-amber-400 bg-amber-400/20 shadow-md shadow-amber-400/20'
             : 'border-amber-400/50 bg-black/5'

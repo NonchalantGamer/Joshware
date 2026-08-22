@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUp } from 'lucide-react';
+import { useFeedback } from '../../context/FeedbackContext';
 
 export const BackToTop: React.FC = () => {
+  const { playFeedback } = useFeedback();
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -39,6 +41,7 @@ export const BackToTop: React.FC = () => {
   }, []);
 
   const scrollToTop = () => {
+    playFeedback('click');
     const heroSection = document.getElementById('home');
     if (heroSection) {
       heroSection.scrollIntoView({ behavior: 'smooth' });

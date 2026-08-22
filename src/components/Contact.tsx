@@ -6,8 +6,10 @@ import { ContactFormData } from '../types';
 import { ScrollReveal, TextReveal } from './ui/ScrollReveal';
 import { MorphicIcon } from './ui/MorphicIcon';
 import { GithubIcon, LinkedinIcon, XIcon, WhatsappIcon, GmailIcon } from './ui/BrandIcons';
+import { useFeedback } from '../context/FeedbackContext';
 
 export const Contact: React.FC = () => {
+  const { playFeedback } = useFeedback();
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -44,6 +46,7 @@ export const Contact: React.FC = () => {
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(emailAddress);
+    playFeedback('success');
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2500);
   };
@@ -51,6 +54,7 @@ export const Contact: React.FC = () => {
   const handleCopyInquiry = () => {
     const text = `Name: ${formData.name}\nEmail: ${formData.email}\nProject: ${formData.projectType}\nBudget: ${formData.budget}\n\nMessage:\n${formData.message}`;
     navigator.clipboard.writeText(text);
+    playFeedback('success');
     setCopiedInquiry(true);
     setTimeout(() => setCopiedInquiry(false), 2500);
   };
@@ -102,6 +106,7 @@ export const Contact: React.FC = () => {
 
       if (response.ok || (data && (data.success === 'true' || data.success === true))) {
         setIsSuccess(true);
+        playFeedback('success');
         confetti({
           particleCount: 60,
           spread: 70,
@@ -112,6 +117,7 @@ export const Contact: React.FC = () => {
         const msg = data?.message || 'Could not send directly via form server.';
         setErrorMessage(msg);
         setIsSuccess(true);
+        playFeedback('success');
       }
     } catch (err) {
       console.warn('FormSubmit AJAX fallback:', err);

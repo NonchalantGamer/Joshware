@@ -5,12 +5,14 @@ import { projects } from '../data/projects';
 import { Project } from '../types';
 import { Cosmo3DCanvas } from './Cosmo3DCanvas';
 import { ScrollReveal, TextReveal } from './ui/ScrollReveal';
+import { useFeedback } from '../context/FeedbackContext';
 
 interface ProjectsProps {
   onSelectProject: (project: Project) => void;
 }
 
 export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
+  const { playFeedback } = useFeedback();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -116,6 +118,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
                           role="option"
                           aria-selected={isSelected}
                           onClick={() => {
+                            playFeedback('tab');
                             setSelectedCategory(cat);
                             setIsDropdownOpen(false);
                           }}

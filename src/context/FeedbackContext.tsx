@@ -1,11 +1,9 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useCallback, useRef } from 'react';
 
 export type FeedbackType = 'click' | 'section' | 'pop' | 'close' | 'tab' | 'success' | 'toggle' | 'hover';
 
 interface FeedbackContextType {
   feedbackEnabled: boolean;
-  setFeedbackEnabled: (enabled: boolean) => void;
-  toggleFeedback: () => void;
   playFeedback: (type: FeedbackType) => void;
   triggerHaptic: (pattern?: number | number[]) => void;
 }
@@ -15,18 +13,12 @@ const FeedbackContext = createContext<FeedbackContextType | undefined>(undefined
 // Web Audio synthesizer for pristine, zero-dependency, ultra-low-latency UI acoustic feedback
 class SoundSynthesizer {
   private ctx: AudioContext | null = null;
-  private isMuted: boolean = false;
 
   constructor() {
     // AudioContext will be lazily initialized on first user gesture to comply with browser autoplay policies
   }
 
-  public setMuted(muted: boolean) {
-    this.isMuted = muted;
-  }
-
   private getAudioContext(): AudioContext | null {
-    if (this.isMuted) return null;
     if (typeof window === 'undefined') return null;
 
     if (!this.ctx) {
@@ -229,67 +221,15 @@ class SoundSynthesizer {
       // Ignore
     }
   }
-
-  // Toggle feedback tone
-  public playToggle(enabled: boolean) {
-    const ctx = this.getAudioContext();
-    if (!ctx) return;
-
-    try {
-      const now = ctx.currentTime;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-
-      osc.type = 'sine';
-      if (enabled) {
-        osc.frequency.setValueAtTime(440, now);
-        osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
-      } else {
-        osc.frequency.setValueAtTime(660, now);
-        osc.frequency.exponentialRampToValueAtTime(330, now + 0.08);
-      }
-
-      gain.gain.setValueAtTime(0.05, now);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start(now);
-      osc.stop(now + 0.1);
-    } catch {
-      // Ignore
-    }
-  }
 }
 
 const synthInstance = new SoundSynthesizer();
 
 export const FeedbackProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Read initial preference from localStorage (default: true for full tactile richness, user can toggle anytime)
-  const [feedbackEnabled, setFeedbackEnabledState] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('joshware_feedback_enabled');
-      if (saved !== null) {
-        return saved === 'true';
-      }
-    }
-    return true;
-  });
-
-  const lastSectionRef = useRef<string>('');
+  const feedbackEnabled = true;
   const lastHapticTimeRef = useRef<number>(0);
 
-  const setFeedbackEnabled = useCallback((enabled: boolean) => {
-    setFeedbackEnabledState(enabled);
-    synthInstance.setMuted(!enabled);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('joshware_feedback_enabled', String(enabled));
-    }
-  }, []);
-
   const triggerHaptic = useCallback((pattern: number | number[] = 10) => {
-    if (!feedbackEnabled) return;
     if (typeof window !== 'undefined' && typeof navigator !== 'undefined' && 'vibrate' in navigator) {
       try {
         const now = Date.now();
@@ -302,11 +242,9 @@ export const FeedbackProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         // Silently catch unsupported vibration permissions
       }
     }
-  }, [feedbackEnabled]);
+  }, []);
 
   const playFeedback = useCallback((type: FeedbackType) => {
-    if (!feedbackEnabled) return;
-
     switch (type) {
       case 'click':
         synthInstance.playClick();
@@ -332,55 +270,19 @@ export const FeedbackProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         synthInstance.playSuccess();
         triggerHaptic([10, 30, 15]);
         break;
-      case 'toggle':
-        synthInstance.playToggle(true);
-        triggerHaptic(14);
-        break;
       default:
         synthInstance.playClick();
         triggerHaptic(8);
     }
-  }, [feedbackEnabled, triggerHaptic]);
-
-  const toggleFeedback = useCallback(() => {
-    const nextState = !feedbackEnabled;
-    if (nextState) {
-      // Temporarily enable synthesizer to play the confirmation sound
-      synthInstance.setMuted(false);
-      synthInstance.playToggle(true);
-      if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
-        try {
-          navigator.vibrate([12, 40, 15]);
-        } catch {
-          // Ignore
-        }
-      }
-    } else {
-      synthInstance.playToggle(false);
-      if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
-        try {
-          navigator.vibrate(10);
-        } catch {
-          // Ignore
-        }
-      }
-    }
-    setFeedbackEnabled(nextState);
-  }, [feedbackEnabled, setFeedbackEnabled]);
-
-  // Sync mute state on mount
-  useEffect(() => {
-    synthInstance.setMuted(!feedbackEnabled);
-  }, [feedbackEnabled]);
+  }, [triggerHaptic]);
 
   // Global listener for interactive button & link clicks to ensure subtle tactile feedback across all views
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
-      if (!feedbackEnabled) return;
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
-      // Check if target or ancestor is interactive and hasn't explicitly disabled feedback
+      // Check if target or ancestor is interactive
       const interactiveEl = target.closest<HTMLElement>(
         'button, a, [role="button"], input[type="submit"], input[type="button"], [data-feedback="click"]'
       );
@@ -396,14 +298,12 @@ export const FeedbackProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     window.addEventListener('click', handleDocumentClick, { capture: true, passive: true });
     return () => window.removeEventListener('click', handleDocumentClick, { capture: true });
-  }, [feedbackEnabled, triggerHaptic]);
+  }, [triggerHaptic]);
 
   return (
     <FeedbackContext.Provider
       value={{
         feedbackEnabled,
-        setFeedbackEnabled,
-        toggleFeedback,
         playFeedback,
         triggerHaptic,
       }}
