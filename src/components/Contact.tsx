@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Send, CheckCircle2, Copy, Check, ExternalLink, Sparkles, MapPin, Clock, AlertCircle, MessageSquare, Mail } from 'lucide-react';
+import { Send, CheckCircle2, Copy, Check, ExternalLink, MapPin, Clock, AlertCircle, MessageSquare, Mail } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { ContactFormData } from '../types';
 import { ScrollReveal, TextReveal } from './ui/ScrollReveal';

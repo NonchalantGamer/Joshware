@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Terminal, Database, ArrowUpRight, Code2, Palette, Cloud, Box, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Terminal, Database, ArrowUpRight, Code2, Palette, Cloud, Box, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal, TextReveal, StaggerContainer, StaggerItem } from './ui/ScrollReveal';
 
 import fullstackImg from '../assets/images/realistic_code_ide_1787333484660.jpg';

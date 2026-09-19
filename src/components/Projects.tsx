@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, Layers, ArrowUpRight, Sparkles, Eye, Code, ChevronRight, ChevronDown, Filter, Check } from 'lucide-react';
+import { ExternalLink, Layers, ArrowUpRight, Eye, Code, ChevronRight, ChevronDown, Filter, Check } from 'lucide-react';
 import { projects } from '../data/projects';
 import { Project } from '../types';
 import { Cosmo3DCanvas } from './Cosmo3DCanvas';

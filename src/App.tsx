@@ -107,7 +107,7 @@ function PortfolioApp() {
           to="light"
           label="Core Identity & Architecture"
           code="01 // ABOUT"
-          icon="sparkles"
+          icon="compass"
         />
 
         <About />
@@ -162,7 +162,7 @@ function PortfolioApp() {
           to="dark"
           label="Initiate Engagement"
           code="06 // CONTACT"
-          icon="sparkles"
+          icon="message"
         />
 
         <Contact />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowUpRight, ArrowDown, FileText, Sparkles, Terminal, Code2, Database, Layout } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, FileText, Box, Terminal, Code2, Database, Layout } from 'lucide-react';
 import { MorphicIcon } from './ui/MorphicIcon';
 import { GithubIcon, LinkedinIcon, XIcon, WhatsappIcon, GmailIcon } from './ui/BrandIcons';
 
@@ -58,7 +58,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCv }) => {
     { label: 'Full-Stack Web', icon: <Code2 className="w-3.5 h-3.5" /> },
     { label: 'UI/UX Architecture', icon: <Layout className="w-3.5 h-3.5" /> },
     { label: 'Database & APIs', icon: <Database className="w-3.5 h-3.5" /> },
-    { label: '3D Spatial Web', icon: <Sparkles className="w-3.5 h-3.5" /> },
+    { label: '3D Spatial Web', icon: <Box className="w-3.5 h-3.5" /> },
   ];
 
   return (

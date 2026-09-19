@@ -8,7 +8,6 @@ import {
   Database,
   ArrowUpRight,
   CheckCircle2,
-  Sparkles,
   Layers,
   Code2
 } from 'lucide-react';
@@ -201,7 +200,7 @@ const StackingCard: React.FC<StackingCardProps> = ({
       case 'Database':
         return <Database className={`w-5 h-5 ${theme.accent}`} />;
       default:
-        return <Sparkles className={`w-5 h-5 ${theme.accent}`} />;
+        return <Code2 className={`w-5 h-5 ${theme.accent}`} />;
     }
   };
 

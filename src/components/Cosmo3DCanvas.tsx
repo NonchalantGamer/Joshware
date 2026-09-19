@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { RotateCw, Play, Pause, Eye, Box, Compass, Sparkles } from 'lucide-react';
+import { RotateCw, Play, Pause, Eye, Box, Compass, Grid } from 'lucide-react';
 
 interface Cosmo3DCanvasProps {
   interactive?: boolean;
@@ -339,7 +339,7 @@ export const Cosmo3DCanvas: React.FC<Cosmo3DCanvasProps> = ({ interactive = true
               renderMode === 'wireframe' ? 'bg-amber-400 text-neutral-950' : 'text-neutral-400 hover:text-neutral-200'
             }`}
           >
-            <Sparkles className="w-3.5 h-3.5" />
+            <Grid className="w-3.5 h-3.5" />
           </button>
           <button
             type="button"

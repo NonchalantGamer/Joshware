@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ExternalLink, Github, Layers, Code, CheckCircle2, ShieldAlert, Cpu, Sparkles, Image as ImageIcon, ZoomIn, Eye } from 'lucide-react';
+import { X, ExternalLink, Github, Layers, Code, CheckCircle2, ShieldAlert, Cpu, Box, Image as ImageIcon, ZoomIn, Eye } from 'lucide-react';
 import { Project } from '../types';
 import { Cosmo3DCanvas } from './Cosmo3DCanvas';
 
@@ -107,7 +107,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             {project.id === 'cosmo3d' && (
               <div className="space-y-2">
                 <p className="text-xs font-mono text-neutral-400 flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <Box className="w-3.5 h-3.5 text-amber-400" />
                   <span>Live Interactive 3D Canvas (Drag to rotate, switch geometry below):</span>
                 </p>
                 <Cosmo3DCanvas interactive={true} />

@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, Code, Cpu, Layers, Disc, CircleDot } from 'lucide-react';
+import { Compass, MessageSquare, Code, Cpu, Layers, Disc, CircleDot } from 'lucide-react';
 
 interface SectionSeparatorProps {
   from?: 'dark' | 'light';
   to?: 'dark' | 'light';
   label?: string;
   code?: string;
-  icon?: 'sparkles' | 'code' | 'cpu' | 'layers' | 'disc';
+  icon?: 'compass' | 'message' | 'code' | 'cpu' | 'layers' | 'disc';
 }
 
 export const SectionSeparator: React.FC<SectionSeparatorProps> = ({
@@ -21,8 +21,10 @@ export const SectionSeparator: React.FC<SectionSeparatorProps> = ({
 
   const renderIcon = () => {
     switch (icon) {
-      case 'sparkles':
-        return <Sparkles className="w-3.5 h-3.5 text-amber-500" />;
+      case 'compass':
+        return <Compass className="w-3.5 h-3.5 text-amber-500" />;
+      case 'message':
+        return <MessageSquare className="w-3.5 h-3.5 text-amber-500" />;
       case 'code':
         return <Code className="w-3.5 h-3.5 text-amber-500" />;
       case 'cpu':

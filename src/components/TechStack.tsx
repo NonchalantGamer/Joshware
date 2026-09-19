@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Code, Database, Sparkles, Layers, Terminal, CheckCircle2, Cpu, Wrench, ChevronDown, Filter, Check } from 'lucide-react';
+import { Code, Database, Layers, Terminal, CheckCircle2, Cpu, Wrench, ChevronDown, Filter, Check } from 'lucide-react';
 import { technologies, skillCategories } from '../data/technologies';
 import { TechItem } from '../types';
 import { ScrollReveal, TextReveal, StaggerContainer, StaggerItem } from './ui/ScrollReveal';

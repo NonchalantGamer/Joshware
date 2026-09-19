@@ -9,7 +9,7 @@ import {
   FileText,
   Eye,
   Check,
-  Sparkles,
+  User,
   GraduationCap,
   Briefcase,
   Layers,
@@ -472,7 +472,7 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
                 {/* PROFESSIONAL SUMMARY */}
                 <div className="space-y-2">
                   <h3 className="text-xs font-mono font-bold tracking-widest uppercase text-amber-400 flex items-center gap-2">
-                    <Sparkles className="w-3.5 h-3.5" />
+                    <User className="w-3.5 h-3.5" />
                     <span>Professional Summary</span>
                   </h3>
                   <p className="text-xs sm:text-sm leading-relaxed text-neutral-300">

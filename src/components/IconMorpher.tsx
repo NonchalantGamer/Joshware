@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence, Transition } from 'motion/react';
-import { Sun, Moon, Menu, X, Check, Plus, ChevronDown, ChevronRight, Sparkles } from 'lucide-react';
+import { Sun, Moon, Menu, X, Check, Plus, ChevronDown, ChevronRight } from 'lucide-react';
 
 export type IconMorphAnimation = 'rotate-flip' | 'spring-scale' | 'slide-fade' | 'pop-rotate' | 'burst';
 export type IconMorphPreset = 'theme' | 'menu' | 'check' | 'chevron' | 'custom';
